@@ -1,0 +1,39 @@
+{
+  "name": "mousike",
+  "version": "1.0.0",
+  "description": "Mousike is a web application for listening Music! 🎵🎶 - Developed with the MERN stack! ✨",
+  "main": "index.js",
+  "scripts": {
+    "storybook": "start-storybook -p 9009",
+    "build-storybook": "build-storybook -c .storybook -o .out"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WilliamVelazquez/mousike.git"
+  },
+  "keywords": [
+    "MERN",
+    "React",
+    "Music",
+    "Mousike",
+    "WilliamVelazquez"
+  ],
+  "author": "William Velazquez <info@williamvelazquez.com> (https://williamvelazquez.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WilliamVelazquez/mousike/issues"
+  },
+  "homepage": "https://github.com/WilliamVelazquez/mousike#readme",
+  "dependencies": {
+    "react": "16.9.0",
+    "react-dom": "16.9.0",
+    "styled-components": "4.3.2"
+  },
+  "devDependencies": {
+    "@babel/core": "7.6.0",
+    "@storybook/addon-knobs": "5.1.11",
+    "@storybook/addon-storysource": "5.2.3",
+    "@storybook/react": "5.1.11",
+    "babel-loader": "8.0.6"
+  }
+}
