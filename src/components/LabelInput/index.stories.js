@@ -20,10 +20,10 @@ storiesOf('Form Components', module)
           id={text('Id', 'labelId')}
           label={text('Label Text', 'Username')}
           validate={boolean('Validation', false)}
-          value={value}
           type={text('Input Type', 'text')}
           placeholder={text('Placeholder', 'XXXXXX')}
           autocomplete={text('Autocomplete', 'off')}
+          value={value}
           handleChange={(event) => setValue(event.target.value)}
           helpText={text('Help Text', 'Max length: 6 characters')}
         />

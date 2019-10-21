@@ -5,9 +5,9 @@ import React from 'react';
 
 import { DivCheckbox, InputCheckbox, LabelCheckbox, SpanButtonCheckbox } from './styles';
 
+// eslint-disable-next-line import/prefer-default-export
 export const ToggleSwitch = (props) => {
   const { id, disabled = false, isChecked, handleToggle, trueColor, falseColor } = props;
-  console.log(props);
   return (
     <DivCheckbox>
       <InputCheckbox
