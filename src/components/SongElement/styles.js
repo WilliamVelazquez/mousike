@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Song = styled.li``;
 
-export const SongLink = styled(a)`
+export const SongLink = styled.a`
     display: grid;
     grid-template-columns: 1fr 80px 40px;
     color: white;
