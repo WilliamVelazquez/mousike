@@ -20,8 +20,8 @@ export const SongElement = (props) => {
         <SongDuration>
           {duration}
         </SongDuration>
-        <SongAddImage src={plusIcon} alt='' />
       </SongLink>
+      <SongAddImage src={plusIcon} alt='' />
     </Song>
 
   );

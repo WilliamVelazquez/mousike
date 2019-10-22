@@ -1,22 +1,26 @@
 import styled from 'styled-components';
 
 export const Song = styled.li`
+    height: 40px;
+    display: grid;
+    cursor: pointer;
     list-style: none;
+    text-decoration: white;
+    border-bottom: 1px solid #D8D8D8;
+    grid-template-columns: 1fr 40px;
+    &:hover{
+        background: #5D00F5;
+    }
 `;
 
 export const SongLink = styled.a`
     width: 100%;
     color: white;
-    height: 40px;
     display: grid;
     padding: 10px 0;
     padding-left: 10px;
-    text-decoration: white;
-    border-bottom: 1px solid #D8D8D8;
-    grid-template-columns: 1fr 80px 40px;
-    &:hover{
-        background: #5D00F5;
-    }
+    text-decoration: none;
+    grid-template-columns: 1fr 80px;
 `;
 
 export const SongName = styled.div`
