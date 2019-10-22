@@ -5,22 +5,31 @@ export const Song = styled.li`
 `;
 
 export const SongLink = styled.a`
-    display: grid;
-    grid-template-columns: 1fr 80px 40px;
+    width: 100%;
     color: white;
+    height: 40px;
+    display: grid;
+    padding: 10px 0;
+    padding-left: 10px;
     text-decoration: white;
     border-bottom: 1px solid #D8D8D8;
-    width: 100%;
-    height: 40px;
-    padding: 10px 0;
+    grid-template-columns: 1fr 80px 40px;
     &:hover{
-        background:#5D00F5;
+        background: #5D00F5;
     }
 `;
 
-export const SongName = styled.div``;
-export const SongDuration = styled.div``;
+export const SongName = styled.div`
+    white-space: nowrap;
+`;
+
+export const SongDuration = styled.div`
+    justify-self: flex-end;
+`;
+
 export const SongAddImage = styled.img`
     width: 15px;
     height: 15px;
+    align-self: center;
+    justify-self: center;
 `;
