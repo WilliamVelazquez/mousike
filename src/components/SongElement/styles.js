@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const Song = styled.li``;
+export const Song = styled.li`
+    list-style: none;
+`;
 
 export const SongLink = styled.a`
     display: grid;

@@ -15,7 +15,7 @@ import { GlobalStyle } from '../../GlobalStyles';
 
 storiesOf('Song Elements', module)
   .addDecorator(withKnobs)
-  .add('SongElement', () => React.createElement(() => {
+  .add('SongElement', () => {
     return (
       <>
         <GlobalStyle />
@@ -27,4 +27,4 @@ storiesOf('Song Elements', module)
 
       </>
     );
-  }));
+  });

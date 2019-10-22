@@ -13,64 +13,15 @@ import { withKnobs,
 import { SongList } from './SongList';
 import { GlobalStyle } from '../../GlobalStyles';
 
+import songs from '../../utils/mocks/songs';
+
 storiesOf('Song Elements', module)
   .addDecorator(withKnobs)
-  .add('SongList', () => React.createElement(() => {
-    const songs = [
-      {
-        key: 1,
-        name: 'Canción Feliz',
-        duration: '12:00',
-        href: '/',
-      },
-      {
-        key: 2,
-        name: 'Canción Feliz',
-        duration: '12:00',
-        href: '/',
-      },
-      {
-        key: 3,
-        name: 'Canción Feliz',
-        duration: '12:00',
-        href: '/',
-      },
-      {
-        key: 4,
-        name: 'Canción Feliz',
-        duration: '12:00',
-        href: '/',
-      },
-      {
-        key: 5,
-        name: 'Canción Feliz',
-        duration: '12:00',
-        href: '/',
-      },
-      {
-        key: 6,
-        name: 'Canción Feliz',
-        duration: '12:00',
-        href: '/',
-      },
-      {
-        key: 7,
-        name: 'Canción Feliz',
-        duration: '12:00',
-        href: '/',
-      },
-      {
-        key: 8,
-        name: 'Canción Feliz',
-        duration: '12:00',
-        href: '/',
-      },
-    ];
+  .add('SongList', () => {
     return (
       <>
         <GlobalStyle />
         <SongList songs={songs} />
-
       </>
     );
-  }));
+  });

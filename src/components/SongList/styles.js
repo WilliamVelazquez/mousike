@@ -2,5 +2,5 @@
 import styled from 'styled-components';
 
 export const SongListStyle = styled.ol`
-
+  margin: 0;
 `;
