@@ -15,49 +15,133 @@ export const PlayingArtist = styled.div`
     font-size: 12px;
 `;
 
+export const SongPlaying = styled.div`
+    width: 120px;
+    color: white;
+    display: grid;
+    grid-auto-flow: column;   
+    align-items: center;
+    grid-gap: 10px;
+`;
+export const CoverImage = styled.img`
+    max-width: 50px;
+    max-height: 50px;
+`;
+
+export const PlayingInfo = styled.div`
+
+`;
+
+export const PlayingSong = styled.div`
+    font-size: 10px;
+`;
+
+export const ControlsStacked = styled.div`
+    width: 100%;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    grid-gap: 30px;
+`;
+
+export const MainControls = styled.div`
+    display: grid;
+    grid-template-columns:repeat(3,1fr) ;
+    width: 100px;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+`;
+
+export const TimeSection = styled.div`
+    width: 100%;
+    display: grid;
+    grid-template-columns:auto 35px ;
+    grid-gap: 30px;
+    display: grid;
+    align-items: center;
+    color: white;
+    display: ${(props) => props.theme.display};
+`;
+TimeSection.defaultProps = {
+  theme: {
+    display: 'none',
+  },
+};
+console.log(MainControls);
+
+// if (MainControls.getBoundingClientRect().width < 500) {
+//   TimeSection.defaultProps = {
+//     theme: {
+//       display: 'none',
+//     },
+//   };
+// } else {
+//   TimeSection.defaultProps = {
+//     theme: {
+//       display: 'block',
+//     },
+//   };
+// }
+
+export const Slider = styled.div`
+    width: 100%;
+    display: grid;    
+    align-items: center;            
+`;
+
+export const TimeSlider = styled.div`
+    -webkit-appearance: none;
+    outline: none;
+    width: 100%;
+    height:2px;
+    display:block;
+    background-image:linear-gradient(to right, #26FFAB calc(var(--value)*1%), #D8D8D8 0);
+`;
+
+export const ExtraActions = styled.div`
+    display: grid;
+    grid-template-columns:repeat(3,1fr) ;
+    width: 100px;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+`;
+
 AudioPlayer.PlayingArtist = PlayingArtist;
 
 //Old
 
-export const CoverImg = styled.img`
-        max-width: 50px;
-        max-height: 50px;
-`;
+// .song-playing{
 
-export const Song = styled.li`
-    height: 40px;
-    display: grid;
-    cursor: pointer;
-    list-style: none;
-    text-decoration: white;
-    border-bottom: 1px solid #D8D8D8;
-    grid-template-columns: 1fr 40px;
-    &:hover{
-        background: #5D00F5;
-    }
-`;
+//     .coverImg{
 
-export const SongLink = styled.a`
-    width: 100%;
-    color: white;
-    display: grid;
-    padding: 10px 0;
-    padding-left: 10px;
-    text-decoration: none;
-    grid-template-columns: 1fr 80px;
-`;
+//     }
+//     .playing__info{
+//         .playing__artist{
+//         }
+//         .playing__song{
+//         }
+//     }
+// }
+// .controls-stacked{
 
-export const SongName = styled.div`
-    white-space: nowrap;
-`;
+//     .main-controls{
 
-export const SongDuration = styled.div`
-    justify-self: flex-end;
-`;
+//     }
+//     .time-section{
 
-export const SongAddImage = styled.img`
-    width: 15px;
-    height: 15px;
-    align-self: center;
-    justify-self: center;
-`;
+//         .slider{
+
+//             .timeSlider{
+
+//             }
+//         }
+//     }
+// }
+
+// .extra-actions{
+
+// }
+

@@ -1,5 +1,5 @@
 import React from 'react';
-import './MusicPlayer.scss';
+// import './MusicPlayer.scss';
 import play from '../../assets/static/Play.png';
 // import pause from '../../assets/static/pause.png';
 import prev from '../../assets/static/rewind-left.png';
@@ -9,7 +9,20 @@ import queue from '../../assets/static/Queue.png';
 import fullScreen from '../../assets/static/fullscreen.png';
 import coverImage from '../../assets/img/album-1.jpg';
 
-import { AudioPlayer, CoverImg, PlayingArtist } from './styles';
+import {
+  AudioPlayer,
+  CoverImage,
+  PlayingInfo,
+  PlayingSong,
+  ControlsStacked,
+  MainControls,
+  TimeSection,
+  Slider,
+  ExtraActions,
+  SongPlaying,
+} from './styles';
+
+const { PlayingArtist } = AudioPlayer;
 
 // const TimeSlider = <input type='range' min='0' max='100' step='1' value='50' className='timeSlider' />;
 export const MusicPlayer = (props) => { // eslint-disable-line import/prefer-default-export
@@ -17,17 +30,17 @@ export const MusicPlayer = (props) => { // eslint-disable-line import/prefer-def
     <>
       <div>
         <AudioPlayer>
-          <div className='song-playing'>
-            <CoverImg src={coverImage} alt='' srcSet='' className='coverImg' />
-            <div className='playing__info'>
+          <SongPlaying>
+            <CoverImage src={coverImage} alt='' srcSet='' />
+            <PlayingInfo>
               <PlayingArtist>The who</PlayingArtist>
-              <div className='playing__song'>I'm free - Live</div>
-            </div>
-          </div>
+              <PlayingSong>I'm free - Live</PlayingSong>
+            </PlayingInfo>
+          </SongPlaying>
 
-          <div className='controls-stacked'>
+          <ControlsStacked onClick={(event) => { console.log(event.target.getBoundingClientRect().width); }}>
 
-            <div className='main-controls'>
+            <MainControls>
               <div className='prev-song'>
                 <img src={prev} alt='' srcSet='' />
               </div>
@@ -37,19 +50,19 @@ export const MusicPlayer = (props) => { // eslint-disable-line import/prefer-def
               <div className='next-song'>
                 <img src={next} alt='' srcSet='' />
               </div>
-            </div>
+            </MainControls>
 
-            <div className='time-section'>
+            <TimeSection>
               {/* <span className='current-time'>0:00</span> */}
-              <div className='slider' data-direction='horizontal'>
+              <Slider data-direction='horizontal'>
                 <input type='range' min='0' max='100' step='1' value='50' className='timeSlider' />
-              </div>
+              </Slider>
               <span className='remaining-time'>0:00</span>
-            </div>
+            </TimeSection>
 
-          </div>
+          </ControlsStacked>
 
-          <div className='extra-actions'>
+          <ExtraActions>
             <div className='prev-song'>
               <img src={repeat} alt='' srcSet='' />
             </div>
@@ -59,7 +72,7 @@ export const MusicPlayer = (props) => { // eslint-disable-line import/prefer-def
             <div className='next-song'>
               <img src={fullScreen} alt='' srcSet='' />
             </div>
-          </div>
+          </ExtraActions>
         </AudioPlayer>
       </div>
 
