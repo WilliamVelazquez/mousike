@@ -1,15 +1,15 @@
 /**
  * @author William Velazquez <info@williamvelazquez.com>
  */
-import styled, {css} from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const SmallElementGroup = styled.small`
   margin-bottom: 10px;
-  ${props => props.validate && 
+  ${(props) => props.validate &&
     css`
       color: #D0021B;
     `
-  }
+}
 `;
 
 export const InputElementGroup = styled.input`
@@ -30,14 +30,14 @@ export const InputElementGroup = styled.input`
   font-family: inherit;
   margin: 0;
 
-  ${props => props.validate && 
+  ${(props) => props.validate &&
     css`
       border-color: #D0021B;
       box-shadow:0 0 4px red; 
       -moz-box-shadow: 0 0 4px red; 
       -webkit-box-shadow:0 0 4px red; 
     `
-  }
+}
 `;
 
 export const LabelElementGroup = styled.label`
