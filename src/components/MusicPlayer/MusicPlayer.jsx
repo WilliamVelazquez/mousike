@@ -37,8 +37,10 @@ export const MusicPlayer = (props) => { // eslint-disable-line import/prefer-def
               <PlayingSong>I'm free - Live</PlayingSong>
             </PlayingInfo>
           </SongPlaying>
-
-          <ControlsStacked onClick={(event) => { console.log(event.target.getBoundingClientRect().width); }}>
+          <ControlsStacked>
+            {/* If ControlsStack.width > 500
+            ? ControlsStack.grid-template-columns=1fr 1fr &&  ControlsStack.TimeSection.display=block
+            : ControlsStack.grid-template-columns=1fr &&  ControlsStack.TimeSection.display=none */}
 
             <MainControls>
               <div className='prev-song'>
@@ -53,7 +55,7 @@ export const MusicPlayer = (props) => { // eslint-disable-line import/prefer-def
             </MainControls>
 
             <TimeSection>
-              {/* <span className='current-time'>0:00</span> */}
+              <span className='current-time'>0:00</span>
               <Slider data-direction='horizontal'>
                 <input type='range' min='0' max='100' step='1' value='50' className='timeSlider' />
               </Slider>
