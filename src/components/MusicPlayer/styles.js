@@ -39,9 +39,18 @@ export const PlayingSong = styled.div`
 export const ControlsStacked = styled.div`
     width: 100%;
     display: grid;
-    grid-template-columns: 100px 1fr;
+    grid-template-columns: ${(props) => props.theme.gridTemplateColumns};
     grid-gap: 30px;
 `;
+
+// if ControlsStacked.width
+ControlsStacked.defaultProps = {
+  theme: {
+    gridTemplateColumns: '100px 1fr',
+  },
+};
+
+ControlsStacked.prototype;
 
 export const MainControls = styled.div`
     display: grid;
@@ -65,10 +74,10 @@ export const TimeSection = styled.div`
 `;
 TimeSection.defaultProps = {
   theme: {
-    display: 'none',
+    display: 'block',
   },
 };
-console.log(MainControls);
+// console.log(MainControls);
 
 // if (MainControls.getBoundingClientRect().width < 500) {
 //   TimeSection.defaultProps = {
