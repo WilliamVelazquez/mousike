@@ -36,7 +36,13 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0 auto;
     color: #ffffff;
     margin-top: 50px;
-    max-width: 800px;
+    max-width: 400px;
     overscroll-behavior: none;
   }
 `;
+
+// export const globalState = {
+//   mainColor='#26FFAB';
+//   whiteColor='#ffffff';
+//   defaultGap='10px';
+// }

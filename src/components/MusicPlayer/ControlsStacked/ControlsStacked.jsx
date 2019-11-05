@@ -1,36 +1,24 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import play from '../../../assets/static/Play.png';
-import prev from '../../../assets/static/rewind-left.png';
-import next from '../../../assets/static/rewind-right.png';
+import MainControls from './MainControls';
 
 const ControlsStackedWrap = styled.div`
     width: 100%;
     display: grid;
     grid-template-columns: ${(props) => props.theme.gridTemplateColumns};
-    grid-gap: 30px;
+    grid-gap: 10px;
 `;
 ControlsStackedWrap.defaultProps = {
   theme: {
-    gridTemplateColumns: '100px 1fr',
+    gridTemplateColumns: '100px',
   },
 };
-
-const MainControls = styled.div`
-    display: grid;
-    grid-template-columns:repeat(3,1fr) ;
-    width: 100px;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
-    justify-items: center;
-`;
 
 const TimeSection = styled.div`
     width: 100%;
     display: grid;
     grid-template-columns:auto 35px ;
-    grid-gap: 30px;
+    grid-gap: 10px;
     display: grid;
     align-items: center;
     color: white;
@@ -38,7 +26,7 @@ const TimeSection = styled.div`
 `;
 TimeSection.defaultProps = {
   theme: {
-    display: 'block',
+    display: 'none',
   },
 };
 
@@ -59,26 +47,46 @@ const TimeSlider = styled.div`
 
 class ControlsStacked extends Component {
 
+  componentDidMount() {
+    const controls = document.getElementById('controls');
+    const timeSection = document.getElementById('timeSection');
+    if (controls.offsetWidth > 300) {
+      // TimeSection.defaultProps = {
+      //   theme: {
+      //     display: 'block',
+      //   },
+      // };
+      // ControlsStackedWrap.defaultProps = {
+      //   theme: {
+      //     gridTemplateColumns: '100px 1fr',
+      //   },
+      // };
+
+      // const input = document.querySelector('.timeSlider');
+      // function handleUpdateSliderInput(input) {
+      //   input.style.setProperty('--value', input.value);
+      // }
+      // handleUpdateSliderInput(input);
+
+      // input.addEventListener('input', () => {
+      //   handleUpdateSliderInput(input);
+      // }, false);
+
+      timeSection.style.display = 'block';
+      controls.style.gridTemplateColumns = '100px 1fr';
+    } else {
+      timeSection.style.display = 'none';
+      controls.style.gridTemplateColumns = '100px';
+    }
+  }
+
   render() {
-    // console.log('offsetWidth', this.offsetWidth);
-    // alert(this.offsetWidth);
     console.log('Super', this.props);
     return (
       <>
-        <ControlsStackedWrap>
-          <MainControls>
-            <div className='prev-song'>
-              <img src={prev} alt='' srcSet='' />
-            </div>
-            <div className='play-pause'>
-              <img src={play} alt='' srcSet='' />
-            </div>
-            <div className='next-song'>
-              <img src={next} alt='' srcSet='' />
-            </div>
-          </MainControls>
-
-          <TimeSection>
+        <ControlsStackedWrap id='controls'>
+          <MainControls />
+          <TimeSection id='timeSection'>
             <Slider data-direction='horizontal'>
               <input type='range' min='0' max='100' step='1' value='50' className='timeSlider' />
             </Slider>
@@ -89,6 +97,7 @@ class ControlsStacked extends Component {
       </>
     );
   }
+
 };
 
 export default ControlsStacked;

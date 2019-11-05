@@ -8,7 +8,7 @@ export const AudioPlayer = styled.div`
     align-content: space-around;//alineado vertical
     justify-items: center ;//horizontal
     /* // align-items:  ; *///vertical
-    grid-gap: 50px;
+    grid-gap: 10px;
     padding: 20px;
 `;
 export const PlayingArtist = styled.div`
