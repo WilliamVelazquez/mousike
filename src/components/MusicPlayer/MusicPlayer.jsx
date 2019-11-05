@@ -6,15 +6,15 @@ import queue from '../../assets/static/Queue.png';
 import fullScreen from '../../assets/static/fullscreen.png';
 import coverImage from '../../assets/img/album-1.jpg';
 
-import {
-  AudioPlayer,
-  CoverImage,
-  PlayingInfo,
-  PlayingSong,
-  ExtraActions,
-  SongPlaying,
-} from './styles';
-import ControlsStacked from './ControlsStacked/ControlsStacked';
+// import {
+//   AudioPlayer,
+//   CoverImage,
+//   PlayingInfo,
+//   PlayingSong,
+//   ExtraActions,
+//   SongPlaying,
+// } from './styles';
+import ControlsStacked from './ControlsStacked';
 
 const { PlayingArtist } = AudioPlayer;
 
@@ -49,14 +49,3 @@ export const MusicPlayer = (props) => { // eslint-disable-line import/prefer-def
     </>
   );
 };
-
-// const input = document.querySelector('.timeSlider');
-// function handleUpdateSliderInput(input) {
-//   input.style.setProperty('--value', input.value);
-// }
-// handleUpdateSliderInput(input);
-
-// input.addEventListener('input', () => {
-//   handleUpdateSliderInput(input);
-// }, false);
-

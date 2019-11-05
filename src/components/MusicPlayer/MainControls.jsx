@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import play from '../../../assets/static/Play.png';
-import prev from '../../../assets/static/rewind-left.png';
-import next from '../../../assets/static/rewind-right.png';
+import play from '../../assets/static/Play.png';
+import prev from '../../assets/static/rewind-left.png';
+import next from '../../assets/static/rewind-right.png';
 
 const MainControlsWrap = styled.div`
 display: grid;
