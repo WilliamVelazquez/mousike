@@ -6,14 +6,14 @@ import queue from '../../assets/static/Queue.png';
 import fullScreen from '../../assets/static/fullscreen.png';
 import coverImage from '../../assets/img/album-1.jpg';
 
-// import {
-//   AudioPlayer,
-//   CoverImage,
-//   PlayingInfo,
-//   PlayingSong,
-//   ExtraActions,
-//   SongPlaying,
-// } from './styles';
+import {
+  AudioPlayer,
+  CoverImage,
+  PlayingInfo,
+  PlayingSong,
+  ExtraActions,
+  SongPlaying,
+} from './styles';
 import ControlsStacked from './ControlsStacked';
 
 const { PlayingArtist } = AudioPlayer;
@@ -49,3 +49,5 @@ export const MusicPlayer = (props) => { // eslint-disable-line import/prefer-def
     </>
   );
 };
+
+// export default MusicPlayer;
