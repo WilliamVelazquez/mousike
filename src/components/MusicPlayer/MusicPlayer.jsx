@@ -53,10 +53,10 @@ const PlayingArtist = styled.div`
 const PlayingSong = styled.div`
     font-size: 8px;
 `;
-const icon = {
-  width: '11px',
-  height: '11px',
-};
+// const icon = {
+//   width: '11px',
+//   height: '11px',
+// };
 export const MusicPlayer = () => { // eslint-disable-line import/prefer-default-export
   return (
     <>

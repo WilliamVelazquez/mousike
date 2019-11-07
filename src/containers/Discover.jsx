@@ -1,5 +1,5 @@
 import React from 'react';
-import { SongList } from '../components/SongList/SongList';
+import { SongList } from '../components/SongElements/SongList';
 // import TabsHeader from '../components/TabsHeader';
 // import '../assets/styles/Discover.scss';
 import { MusicPlayer } from '../components/MusicPlayer/MusicPlayer';

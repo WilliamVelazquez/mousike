@@ -4,7 +4,7 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import { SongElement } from '../SongElement/SongElement';
+import { SongElement } from './SongElement';
 
 const SongListStyle = styled.ol`
   margin: 0;
