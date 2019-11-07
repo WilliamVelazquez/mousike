@@ -11,7 +11,7 @@ const Discover = () => (
     <div className='tabs'>
       {/* <TabsHeader /> */}
       <GlobalStyle />
-      <SongList songs={songs} />
+      <SongList songs={songs} onChange='' />
       <MusicPlayer />
     </div>
   </>
