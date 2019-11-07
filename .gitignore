@@ -13,5 +13,4 @@ jspm_packages
 package-lock.json
 yarn.lock
 
-# Secrets File
-.env
+.DS_Store
