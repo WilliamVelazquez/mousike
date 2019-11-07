@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import MainControls from './MainControls';
-import TimeSection from './TimeSection.jsx';
+import TimeSection from './TimeSection';
 
 const ControlsStackedWrap = styled.div`
     width: 100%;
@@ -30,7 +30,7 @@ class ControlsStacked extends Component {
   }
 
   render() {
-    console.log('Super', this.props);
+    // console.log('Super', this.props);
     return (
       <>
         <ControlsStackedWrap id='controls'>

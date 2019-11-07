@@ -10,8 +10,12 @@ import App from './routes/App';
 // const store = createStore(reducer, initialState, composeEnhancers());
 
 ReactDOM.render(
-  <Provider>
-    <App />
-  </Provider>,
+  <App />,
   document.getElementById('app'),
 );
+// ReactDOM.render(
+//   <Provider>
+//     <App />
+//   </Provider>,
+//   document.getElementById('app'),
+// );

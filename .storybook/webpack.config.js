@@ -2,7 +2,7 @@
 /**
  * @author William Velazquez <info@williamvelazquez.com>
  */
-console.log('cargando el webpack para storybook...');
+console.log('Cargando el webpack para storybook...');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
@@ -10,7 +10,7 @@ const path = require('path');
  module.exports = function({ config }) {
   config.module.rules.push({
     test: /\.stories\.jsx?$/,
-    loaders: [require.resolve('@storybook/source-loader'),resolve('babel-loader')],
+    loaders: [require.resolve('@storybook/source-loader')],
     enforce: 'pre',
   });
   config.module.rules.push({

@@ -30,13 +30,13 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    /* background: #fefefe; */
+    background: #333333;
     /* height: 100vh; */
     width: 100%;
     margin: 0 auto;
     color: #ffffff;
     margin-top: 50px;
-    max-width: 600px;
+    /* max-width: 600px; */
     overscroll-behavior: none;
   }
 `;
