@@ -15,7 +15,7 @@ const Song = styled.li`
     text-decoration: white;
     border-bottom: 1px solid #D8D8D8;
     grid-template-columns: 1fr 40px;
-    &:hover{
+    &:hover, &:active{
         background: #5D00F5;
     }
 `;

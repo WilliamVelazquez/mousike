@@ -18,7 +18,7 @@ import { SongElement } from './SongElements/SongElement';
 import { LabelInput } from './LabelInput/LabelInput';
 import { ToggleSwitch } from './ToggleSwitch/ToggleSwitch';
 
-import { GlobalStyle } from '../GlobalStyles';
+import { GlobalStyleStoryBook, GlobalStyle } from '../GlobalStyles';
 
 import songs from '../utils/mocks/songs';
 
@@ -29,7 +29,7 @@ storiesOf('Form Components', module)
     const [value, setValue] = useState('');
     return (
       <>
-        <GlobalStyle />
+        <GlobalStyleStoryBook />
         <LabelInput
           id={text('Id', 'labelId')}
           label={text('Label Text', 'Username')}
@@ -75,7 +75,7 @@ storiesOf('Song Elements', module)
   .add('SongList', () => {
     return (
       <>
-        <GlobalStyle />
+        <GlobalStyleStoryBook />
         <SongList songs={songs} />
       </>
     );
@@ -85,7 +85,7 @@ storiesOf('Song Elements', module)
   .add('SongElement', () => {
     return (
       <>
-        <GlobalStyle />
+        <GlobalStyleStoryBook />
         <SongElement
           name={text('Song Name', 'Song Name')}
           duration={text('Duration', '08:36')}

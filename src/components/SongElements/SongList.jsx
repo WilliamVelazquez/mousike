@@ -8,6 +8,7 @@ import { SongElement } from './SongElement';
 
 const SongListStyle = styled.ol`
   margin: 0;
+  padding-inline-start:0;
 `;
 
 // eslint-disable-next-line import/prefer-default-export
@@ -35,4 +36,4 @@ export const SongList = (props) => {
 
 };
 
-// export default SongList;
+export default SongList;
