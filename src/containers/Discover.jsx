@@ -1,5 +1,5 @@
 import React from 'react';
-import { SongList } from '../components/SongList/SongList';
+import { SongList } from '../components/SongElements/SongList';
 // import TabsHeader from '../components/TabsHeader';
 // import '../assets/styles/Discover.scss';
 import { MusicPlayer } from '../components/MusicPlayer/MusicPlayer';
@@ -11,7 +11,7 @@ const Discover = () => (
     <div className='tabs'>
       {/* <TabsHeader /> */}
       <GlobalStyle />
-      <SongList songs={songs} />
+      <SongList songs={songs} onChange='' />
       <MusicPlayer />
     </div>
   </>

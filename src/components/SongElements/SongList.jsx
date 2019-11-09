@@ -3,8 +3,12 @@
  */
 
 import React from 'react';
-import { SongListStyle } from './styles';
-import { SongElement } from '../SongElement/SongElement';
+import styled from 'styled-components';
+import { SongElement } from './SongElement';
+
+const SongListStyle = styled.ol`
+  margin: 0;
+`;
 
 // eslint-disable-next-line import/prefer-default-export
 export const SongList = (props) => {
@@ -15,7 +19,7 @@ export const SongList = (props) => {
         songs &&
         songs.map((song) => {
           const { name, duration, href, key } = song;
-          console.log(song);
+          // console.log(song);
           return (
             <SongElement
               key={key}
