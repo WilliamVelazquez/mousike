@@ -5,7 +5,7 @@
 import { createGlobalStyle } from 'styled-components';
 
 // eslint-disable-next-line import/prefer-default-export
-export const GlobalStyle = createGlobalStyle`
+export const GlobalStyleStoryBook = createGlobalStyle`
   html {
     box-sizing: border-box;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -31,18 +31,43 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     background: #333333;
-    /* height: 100vh; */
+    height: 100vh;
     width: 100%;
     margin: 0 auto;
     color: #ffffff;
     margin-top: 50px;
-    /* max-width: 600px; */
+    max-width: 600px;
     overscroll-behavior: none;
   }
 `;
+export const GlobalStyle = createGlobalStyle`
+  html {
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
 
-// export const globalState = {
-//   mainColor='#26FFAB';
-//   whiteColor='#ffffff';
-//   defaultGap='10px';
-// }
+  *, *::before, *::after {
+    box-sizing: inherit;
+  }
+
+  ul, li, h1, h2, h3, p, button {
+    margin: 0;
+  }
+
+  button {
+    background: transparent;
+    border: 0;
+    outline: 0;
+  }
+
+  body {
+    background: #333333;
+    /* height: 100vh; */
+    width: 100%;
+    margin: 0;
+    color: #ffffff;
+    /* margin-top: 50px; */
+    /* max-width: 600px; */
+    /* overscroll-behavior: none; */
+  }
+`;
