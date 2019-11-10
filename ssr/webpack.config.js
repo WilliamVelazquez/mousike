@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 const dotenv = require('dotenv');
@@ -60,13 +61,24 @@ module.exports = {
         ],
       },
       {
-        test: /\.css|.styl$/,
+        test: /\.(s*)css$/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
           },
           'css-loader',
-          'stylus-loader',
+          'sass-loader',
+        ],
+      },
+      {
+        test: /\.(png|gif|jpg)$/,
+        use: [
+          {
+            'loader': 'file-loader',
+            options: {
+              name: 'assets/[hash].[ext]',
+            },
+          },
         ],
       },
     ],
@@ -75,6 +87,10 @@ module.exports = {
     historyApiFallback: true,
   },
   plugins: [
+    new HtmlWebPackPlugin({
+      template: './public/index.html',
+      filename: './index.html',
+    }),
     new MiniCssExtractPlugin({
       filename: 'assets/app.css',
     }),
