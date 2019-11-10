@@ -52,9 +52,9 @@ const MobileHeader = (props) => {
         <LogoImg src={logo} alt='' />
       </IconWrapper>
       <Title>{title || 'DISCOVER'}</Title>
-      <IconWrapper>
+      {/* <IconWrapper>
         <HamburgerMenuImg src={hamburgerIcon} alt='' />
-      </IconWrapper>
+      </IconWrapper> */}
     </MobileHeaderWrapper>
   ) ;
 };

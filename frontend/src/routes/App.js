@@ -6,9 +6,10 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 // import NotFound from '../containers/NotFound';
 // import Layout from '../components/Layout';
 // import Player from '../containers/Player';
+import GlobalStyle from '../GlobalStyles';
+import Login from '../containers/Login';
 import Discover from '../containers/Discover';
 import HamburgerMenu from '../components/HamburgerMenu';
-import GlobalStyle from '../GlobalStyles';
 // import MusicPlayer from '../components/MusicPlayer';
 
 const App = () => (
@@ -19,6 +20,7 @@ const App = () => (
       {/* <Route exact path='/' component={Home} />
         <Route exact path='/login' component={Login} />
         <Route exact path='/register' component={Register} /> */}
+      <Route exact path='/login' component={Login} />
       <Route exact path='/discover' component={Discover} />
       <Route exact path='/hamburger' component={HamburgerMenu} />
       {/* <Route exact path='/player/:id' component={Player} />
