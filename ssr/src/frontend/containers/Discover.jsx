@@ -9,15 +9,14 @@ import MobileHeader from '../components/Header/MobileHeader';
 
 const Discover = () => (
   <>
-    <div className='tabs'>
+    <div className="tabs">
       {/* <TabsHeader /> */}
       <GlobalStyle />
-      <MobileHeader title='DISCOVER' />
-      <SongList songs={songs} onChange='' />
+      <MobileHeader title="DISCOVER" />
+      <SongList songs={songs} onChange="" />
       <MusicPlayer />
     </div>
   </>
 );
 
 export default Discover;
-

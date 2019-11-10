@@ -5,11 +5,10 @@ import styled, { css } from 'styled-components';
 
 export const SmallElementGroup = styled.small`
   margin-bottom: 10px;
-  ${(props) => props.validate &&
+  ${props => props.validate &&
     css`
-      color: #D0021B;
-    `
-}
+      color: #d0021b;
+    `}
 `;
 
 export const InputElementGroup = styled.input`
@@ -19,9 +18,10 @@ export const InputElementGroup = styled.input`
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 4px;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out 0.15s,
+    box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   font-size: 18px;
   line-height: 1.428571429;
   color: #555;
@@ -30,14 +30,13 @@ export const InputElementGroup = styled.input`
   font-family: inherit;
   margin: 0;
 
-  ${(props) => props.validate &&
+  ${props => props.validate &&
     css`
-      border-color: #D0021B;
-      box-shadow:0 0 4px red; 
-      -moz-box-shadow: 0 0 4px red; 
-      -webkit-box-shadow:0 0 4px red; 
-    `
-}
+      border-color: #d0021b;
+      box-shadow: 0 0 4px red;
+      -moz-box-shadow: 0 0 4px red;
+      -webkit-box-shadow: 0 0 4px red;
+    `}
 `;
 
 export const LabelElementGroup = styled.label`

@@ -4,11 +4,7 @@
 import React, { useState } from 'react';
 
 import { storiesOf } from '@storybook/react';
-import { withKnobs,
-  text,
-  boolean,
-  color,
-} from '@storybook/addon-knobs';
+import { withKnobs, text, boolean, color } from '@storybook/addon-knobs';
 
 import { MusicPlayer } from './MusicPlayer/MusicPlayer';
 // Song Elements
@@ -38,7 +34,7 @@ storiesOf('Form Components', module)
           placeholder={text('Placeholder', 'XXXXXX')}
           autocomplete={text('Autocomplete', 'off')}
           value={value}
-          handleChange={(event) => setValue(event.target.value)}
+          handleChange={event => setValue(event.target.value)}
           helpText={text('Help Text', 'Max length: 6 characters')}
         />
       </>
@@ -49,7 +45,7 @@ storiesOf('Form Components', module)
   .addDecorator(withKnobs)
   .add('ToggleSwitch', () => (
     <ToggleSwitch
-      key='switch'
+      key="switch"
       disabled={boolean('Disabled', false)}
       isChecked={boolean('Checked', true)}
       trueColor={color('Active Color', '#4A90E2')}
@@ -91,8 +87,6 @@ storiesOf('Song Elements', module)
           duration={text('Duration', '08:36')}
           href={text('Link to', 'https://example.org')}
         />
-
       </>
     );
   });
-

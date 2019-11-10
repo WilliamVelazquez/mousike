@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 const TimeSectionWrap = styled.div`
-    width: 100%;
-    display: grid;
-    grid-template-columns:auto 35px ;
-    grid-gap: 10px;
-    display: grid;
-    align-items: center;
-    color: white;
-    display: ${(props) => props.theme.display};
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 35px;
+  grid-gap: 10px;
+  display: grid;
+  align-items: center;
+  color: white;
+  display: ${props => props.theme.display};
 `;
 TimeSectionWrap.defaultProps = {
   theme: {
@@ -18,21 +18,24 @@ TimeSectionWrap.defaultProps = {
 };
 
 const Slider = styled.div`
-    width: 100%;
-    display: grid;    
-    align-items: center;            
+  width: 100%;
+  display: grid;
+  align-items: center;
 `;
 const TimeSlider = styled.input`
-    -webkit-appearance: none;
-    outline: none;
-    width: 100%;
-    height:2px;
-    display:block;
-    background-image:linear-gradient(to right, #26FFAB calc(var(--value)*1%), #D8D8D8 0);
+  -webkit-appearance: none;
+  outline: none;
+  width: 100%;
+  height: 2px;
+  display: block;
+  background-image: linear-gradient(
+    to right,
+    #26ffab calc(var(--value) * 1%),
+    #d8d8d8 0
+  );
 `;
 
 class TimeSection extends Component {
-
   componentDidMount() {
     const input = document.querySelector('#timeSlider');
     function handleUpdateSliderInput(input) {
@@ -40,9 +43,13 @@ class TimeSection extends Component {
     }
     handleUpdateSliderInput(input);
 
-    input.addEventListener('input', () => {
-      handleUpdateSliderInput(input);
-    }, false);
+    input.addEventListener(
+      'input',
+      () => {
+        handleUpdateSliderInput(input);
+      },
+      false,
+    );
 
     const controls = document.getElementById('controls');
     const timeSection = document.getElementById('timeSection');
@@ -57,11 +64,18 @@ class TimeSection extends Component {
 
   render() {
     return (
-      <TimeSectionWrap id='timeSection'>
-        <Slider data-direction='horizontal'>
-          <TimeSlider type='range' min='0' max='100' step='1' value='50' id='timeSlider' />
+      <TimeSectionWrap id="timeSection">
+        <Slider data-direction="horizontal">
+          <TimeSlider
+            type="range"
+            min="0"
+            max="100"
+            step="1"
+            value="50"
+            id="timeSlider"
+          />
         </Slider>
-        <span className='remaining-time'>0:00</span>
+        <span className="remaining-time">0:00</span>
       </TimeSectionWrap>
     );
   }

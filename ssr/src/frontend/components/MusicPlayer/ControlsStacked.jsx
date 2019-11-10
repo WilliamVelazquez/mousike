@@ -4,10 +4,10 @@ import MainControls from './MainControls';
 import TimeSection from './TimeSection';
 
 const ControlsStackedWrap = styled.div`
-    width: 100%;
-    display: grid;
-    grid-template-columns: ${(props) => props.theme.gridTemplateColumns};
-    grid-gap: 10px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: ${props => props.theme.gridTemplateColumns};
+  grid-gap: 10px;
 `;
 ControlsStackedWrap.defaultProps = {
   theme: {
@@ -16,7 +16,6 @@ ControlsStackedWrap.defaultProps = {
 };
 
 class ControlsStacked extends Component {
-
   componentDidMount() {
     const controls = document.getElementById('controls');
     const timeSection = document.getElementById('timeSection');
@@ -33,16 +32,13 @@ class ControlsStacked extends Component {
     // console.log('Super', this.props);
     return (
       <>
-        <ControlsStackedWrap id='controls'>
+        <ControlsStackedWrap id="controls">
           <MainControls />
           <TimeSection />
         </ControlsStackedWrap>
-
       </>
     );
   }
-
-};
+}
 
 export default ControlsStacked;
-

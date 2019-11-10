@@ -2,20 +2,31 @@
  * @author William Velazquez <info@williamvelazquez.com>
  */
 import React from 'react';
-import { DivElementGroup, LabelElementGroup, InputElementGroup, SmallElementGroup } from './styles';
+import {
+  DivElementGroup,
+  LabelElementGroup,
+  InputElementGroup,
+  SmallElementGroup,
+} from './styles';
 
 // eslint-disable-next-line import/prefer-default-export
 export const LabelInput = (props) => {
-  const { id, label, validate, value, type, placeholder, autocomplete, handleChange, helpText } = props;
+  const {
+    id,
+    label,
+    validate,
+    value,
+    type,
+    placeholder,
+    autocomplete,
+    handleChange,
+    helpText,
+  } = props;
   return (
     <DivElementGroup>
-      {
-        label && (
-          <LabelElementGroup htmlFor={id || null}>
-            {label}
-          </LabelElementGroup>
-        )
-      }
+      {label && (
+        <LabelElementGroup htmlFor={id || null}>{label}</LabelElementGroup>
+      )}
       <InputElementGroup
         id={id || null}
         name={id || null}
@@ -28,11 +39,10 @@ export const LabelInput = (props) => {
         onChange={handleChange && handleChange.bind(this)}
         required
       />
-      {
-        validate && helpText &&
+      {validate && helpText && (
         // className="form-text form-text-error"
         <SmallElementGroup validate>{helpText}</SmallElementGroup>
-      }
+      )}
     </DivElementGroup>
   );
 };

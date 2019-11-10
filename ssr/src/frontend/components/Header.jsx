@@ -6,8 +6,6 @@ const HeaderWrapper = styled.div`
   justify-content: space-between;
 `;
 
-const Header = props => (
-  <HeaderWrapper className="Header" />
-);
+const Header = props => <HeaderWrapper className="Header" />;
 
 export default Header;

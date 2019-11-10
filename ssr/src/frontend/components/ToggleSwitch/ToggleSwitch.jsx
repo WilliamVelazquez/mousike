@@ -3,15 +3,27 @@
  */
 import React from 'react';
 
-import { DivCheckbox, InputCheckbox, LabelCheckbox, SpanButtonCheckbox } from './styles';
+import {
+  DivCheckbox,
+  InputCheckbox,
+  LabelCheckbox,
+  SpanButtonCheckbox,
+} from './styles';
 
 // eslint-disable-next-line import/prefer-default-export
 export const ToggleSwitch = (props) => {
-  const { id, disabled = false, isChecked, handleToggle, trueColor, falseColor } = props;
+  const {
+    id,
+    disabled = false,
+    isChecked,
+    handleToggle,
+    trueColor,
+    falseColor,
+  } = props;
   return (
     <DivCheckbox>
       <InputCheckbox
-        type='checkbox'
+        type="checkbox"
         id={id || null}
         disabled={disabled}
         checked={isChecked}

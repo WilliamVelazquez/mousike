@@ -1,6 +1,6 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { ServerStyleSheet } from 'styled-components';
+// import { ServerStyleSheet } from 'styled-components';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { StaticRouter } from 'react-router';
@@ -21,9 +21,7 @@ const main = (req, res, next) => {
     const html = renderToString(
       <Provider store={store}>
         <StaticRouter location={req.url} context={{}}>
-          <Layout>
-            {renderRoutes(Routes)}
-          </Layout>
+          <Layout>{renderRoutes(Routes)}</Layout>
         </StaticRouter>
       </Provider>,
     );

@@ -8,7 +8,7 @@ import { SongElement } from './SongElement';
 
 const SongListStyle = styled.ol`
   margin: 0;
-  padding-inline-start:0;
+  padding-inline-start: 0;
 `;
 
 // eslint-disable-next-line import/prefer-default-export
@@ -16,8 +16,7 @@ export const SongList = (props) => {
   const { songs } = props;
   return (
     <SongListStyle>
-      {
-        songs &&
+      {songs &&
         songs.map((song) => {
           const { name, duration, href, key } = song;
           // console.log(song);
@@ -29,11 +28,9 @@ export const SongList = (props) => {
               href={href}
             />
           );
-        })
-      }
+        })}
     </SongListStyle>
   );
-
 };
 
 export default SongList;

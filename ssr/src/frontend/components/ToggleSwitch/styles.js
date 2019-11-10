@@ -32,26 +32,26 @@ export const LabelCheckbox = styled.label`
   border-radius: 100px;
   position: relative;
   transition: background-color .2s;
-  background-color: ${(props) => (props.isChecked ? props.trueColor : props.falseColor)};
-  cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')}
+  background-color: ${props => (props.isChecked ? props.trueColor : props.falseColor)};
+  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')}
 
-  ${(props) => (props.disabled ?
+  ${props => (props.disabled ?
     css`
-      filter: grayscale(60%);
-      opacity: .7;
-    ` :
+          filter: grayscale(60%);
+          opacity: 0.7;
+        ` :
     css`
-    &:active ${SpanButtonCheckbox} {
-      width: 45px;
-    }
-    `)
-}
+          &:active ${SpanButtonCheckbox} {
+            width: 45px;
+          }
+        `)}
 
-  /* ${(props) => !props.disabled && css`
-    &:active ${SpanButtonCheckbox} {
-      width: 45px;
-    }
-  `} */
+  /* ${props => !props.disabled &&
+    css`
+      &:active ${SpanButtonCheckbox} {
+        width: 45px;
+      }
+    `} */
   
   /* &:active ${SpanButtonCheckbox}{
     width: 45px;

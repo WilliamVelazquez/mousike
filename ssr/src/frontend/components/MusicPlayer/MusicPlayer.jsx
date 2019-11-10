@@ -10,54 +10,55 @@ import coverImage from '../../assets/img/album-1.jpg';
 import ControlsStacked from './ControlsStacked';
 
 const AudioPlayer = styled.div`
-    background-color: #262930;  
-    display: grid;
-    grid-template-columns:100px 1fr 100px ;
-    justify-content: space-evenly;//alineado horizontal
-    align-content: space-around;//alineado vertical
-    justify-items: center ;//horizontal
-    grid-gap: 10px;
-    padding: 20px;
-    position:absolute;
-    bottom: 0;
-    width:100%;
+  background-color: #262930;
+  display: grid;
+  grid-template-columns: 100px 1fr 100px;
+  justify-content: space-evenly; //alineado horizontal
+  align-content: space-around; //alineado vertical
+  justify-items: center; //horizontal
+  grid-gap: 10px;
+  padding: 20px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 `;
 
 const CoverImage = styled.img`
-    max-width: 36px;
-    max-height: 36px;
+  max-width: 36px;
+  max-height: 36px;
 `;
 
 const ExtraActions = styled.div`
-    display: grid;
-    grid-template-columns:repeat(3,1fr) ;
-    width: 100px;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
-    justify-items: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100px;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  justify-items: center;
 `;
 
 const SongPlaying = styled.div`
-    color: white;
-    display: grid;
-    /* grid-auto-flow: column;   */
-    grid-template-columns: 1fr 2fr; 
-    align-items: center;
-    grid-gap: 10px;
+  color: white;
+  display: grid;
+  /* grid-auto-flow: column;   */
+  grid-template-columns: 1fr 2fr;
+  align-items: center;
+  grid-gap: 10px;
 `;
 const PlayingArtist = styled.div`
-    font-size: 9px;
+  font-size: 9px;
 `;
 
 const PlayingSong = styled.div`
-    font-size: 8px;
+  font-size: 8px;
 `;
 // const icon = {
 //   width: '11px',
 //   height: '11px',
 // };
-export const MusicPlayer = () => { // eslint-disable-line import/prefer-default-export
+export const MusicPlayer = () => {
+  // eslint-disable-line import/prefer-default-export
   return (
     <>
       <div>
@@ -83,7 +84,6 @@ export const MusicPlayer = () => { // eslint-disable-line import/prefer-default-
           </ExtraActions>
         </AudioPlayer>
       </div>
-
     </>
   );
 };
