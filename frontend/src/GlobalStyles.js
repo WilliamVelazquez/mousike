@@ -61,11 +61,11 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background: #333333;
     /* height: 100vh; */
-    width: 100%;
     margin: 0;
+    width: 100%;
     color: #ffffff;
+    background: ${(props) => props.background||'#333333'};;
     /* margin-top: 50px; */
     /* max-width: 600px; */
     /* overscroll-behavior: none; */
