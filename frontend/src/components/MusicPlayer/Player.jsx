@@ -5,7 +5,6 @@
 /* eslint-disable react/no-string-refs */
 import React from 'react';
 import styled from 'styled-components';
-import './Player.css';
 // import loadFiles from '../files';
 const AudioPlayer = styled.audio``;
 const PlayerWrapper = styled.div`
@@ -65,14 +64,48 @@ const Bar = styled.div`
       background: white;    
     }
 `;
+const Time = styled.div`
+  position: absolute;
+  right: 0;
+  width: 100px;
+  color: white;
+  font-size: 12px;
+  padding-top: 17px;
+  text-align: center;
+`;
 
 function offsetLeft(el) {
+  let element = el;
   let left = 0;
-  while (el && el !== document) {
-    left += el.offsetLeft;
-    el = el.offsetParent;
+  while (element && element !== document) {
+    left += element.offsetLeft;
+    element = element.offsetParent;
   }
   return left;
+}
+
+function formatToNumber(num) {
+  const str = `${num}`;
+  if (str.length === 1) {
+    return 0 + str;
+  }
+  if (str.length === 0) {
+    return '00';
+  }
+  return str;
+}
+
+function formatTime(s, showHours) {
+  const totalSeconds = Math.floor(s);
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor(s / 60) - hours * 60;
+  const seconds = totalSeconds - minutes * 60 - hours * 3600;
+
+  if (hours || showHours) {
+    return `${(hours)}:${formatToNumber(minutes)}:${formatToNumber(seconds)}`;
+  }
+  return `${formatToNumber(minutes)}:${formatToNumber(seconds)}`;
+
 }
 
 class Player extends React.Component {
@@ -81,8 +114,29 @@ class Player extends React.Component {
     this.state = {
       file: encodeURI('https://archive.org/download/vs3s02e01/format=VBR+MP3&ignore=x.mp3'),
       playing: false,
-      progress: '2%',
+      progress: 0.03,
+      humanTime: '00:00',
     };
+    this.count = 0;
+
+  }
+
+  onUpdate() {
+    const { playing } = this.state;
+    if (playing) {
+      const { player } = this.refs;
+      this.setState({
+        progress: player.currentTime / player.duration,
+      });
+      const humanTime = formatTime(player.currentTime);
+      // console.log(humanTime);
+      this.setState({ humanTime });
+      // console.log((player.currentTime));
+      if (player.ended) {
+        console.log('song ended');
+      }
+    }
+
   }
 
   previousSongHandler(event) {
@@ -126,7 +180,11 @@ class Player extends React.Component {
         playing: false,
       });
     }
-    console.log(player.paused);
+    // console.log(player.paused);
+  }
+
+  componentDidMount() {
+    this.interval_id = setInterval(this.onUpdate.bind(this), 250);
   }
 
   render() {
@@ -134,6 +192,7 @@ class Player extends React.Component {
     const { file } = this.state;
     const { player } = this.refs;
     const { progress } = this.state;
+    const { humanTime } = this.state;
     if (player && player.currentSrc !== file) {
       player.src = file;
     }
@@ -152,11 +211,17 @@ class Player extends React.Component {
           </ControlsButton>
         </Controls>
         <div>
-          <Progress onClick={this.setProgress.bind(this)} className='progress'>
+          <Progress
+            onClick={this.setProgress.bind(this)}
+            className='progress'
+          >
             <Bar className='bar' ref='progressBar'>
               <div style={{ width: `${progress * 100}%` }} />
             </Bar>
           </Progress>
+          <Time className='time'>
+            {humanTime}
+          </Time>
 
         </div>
         <AudioPlayer ref='player'>
