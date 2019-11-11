@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/jsx-filename-extension */
 /* eslint-disable no-alert */
 /* eslint-disable class-methods-use-this */
@@ -6,11 +7,9 @@ import React from 'react';
 import styled from 'styled-components';
 import './Player.css';
 // import loadFiles from '../files';
-
 const AudioPlayer = styled.audio``;
 const PlayerWrapper = styled.div`
     margin: 15px 0;
-    /* background-color: #052b52; */
     width: 100%;
     height: 50px;
     position: relative;
@@ -61,10 +60,20 @@ const Bar = styled.div`
       left: 0;
       top: 0;
       bottom: 0;
-      width: 50%;
+      /* width: 50%; */
+      width: '0%';
       background: white;    
     }
 `;
+
+function offsetLeft(el) {
+  let left = 0;
+  while (el && el !== document) {
+    left += el.offsetLeft;
+    el = el.offsetParent;
+  }
+  return left;
+}
 
 class Player extends React.Component {
   constructor() {
@@ -72,6 +81,7 @@ class Player extends React.Component {
     this.state = {
       file: encodeURI('https://archive.org/download/vs3s02e01/format=VBR+MP3&ignore=x.mp3'),
       playing: false,
+      progress: '2%',
     };
   }
 
@@ -85,6 +95,19 @@ class Player extends React.Component {
     alert('b');
   }
 
+  setProgress(event) {
+    event.preventDefault();
+    const { player } = this.refs;
+    const { progressBar } = this.refs;
+    const offset = offsetLeft(progressBar);
+    const progress = ((event.clientX - offset) / progressBar.clientWidth);
+
+    player.currentTime = player.duration * progress;
+
+    // console.log(offset, event.clientX, progressBar.clientWidth, progress);
+    this.setState({ progress });
+  }
+
   togglePlay() {
     const { player } = this.refs;
     if (player.paused) {
@@ -92,6 +115,11 @@ class Player extends React.Component {
       this.setState({
         playing: true,
       });
+      // setTimeout(() => {
+      //   const { player } = this.refs;
+      //   player.src = 'https://archive.org/download/20191111_20191111_0757/format=VBR+MP3&ignore=x.mp3';
+      //   player.play();
+      // }, 2000);
     } else {
       player.pause();
       this.setState({
@@ -104,26 +132,29 @@ class Player extends React.Component {
   render() {
     const { playing } = this.state;
     const { file } = this.state;
+    const { player } = this.refs;
+    const { progress } = this.state;
+    if (player && player.currentSrc !== file) {
+      player.src = file;
+    }
+
     return (
       <PlayerWrapper className='player'>
         <Controls className='controls'>
           <ControlsButton type='button' onClick={this.previousSongHandler.bind(this)}>
-            {' '}
             <i className='fa fa-chevron-left' aria-hidden='true' />
           </ControlsButton>
           <ControlsButton type='button' onClick={this.togglePlay.bind(this)}>
-            {' '}
             <i className={playing ? 'fa fa-pause' : 'fa fa-play'} aria-hidden='true' />
           </ControlsButton>
           <ControlsButton type='button' onClick={this.nextSongHandler.bind(this)}>
-            {' '}
             <i className='fa fa-chevron-right' aria-hidden='true' />
           </ControlsButton>
         </Controls>
         <div>
-          <Progress className='progress'>
-            <Bar className='bar'>
-              <div />
+          <Progress onClick={this.setProgress.bind(this)} className='progress'>
+            <Bar className='bar' ref='progressBar'>
+              <div style={{ width: `${progress * 100}%` }} />
             </Bar>
           </Progress>
 
