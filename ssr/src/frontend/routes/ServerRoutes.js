@@ -1,5 +1,6 @@
 import NotFound from '../containers/NotFound';
 import Discover from '../containers/Discover';
+import FullMusicPlayer from '../components/FullMusicPlayer/FullMusicPlayer';
 
 const serverRoutes = [
   {
@@ -10,6 +11,11 @@ const serverRoutes = [
   {
     path: '/discover',
     component: Discover,
+    exact: true,
+  },
+  {
+    path: '/player',
+    component: FullMusicPlayer,
     exact: true,
   },
   {

@@ -8,6 +8,7 @@ import fullScreen from '../../assets/static/fullscreen.png';
 import coverImage from '../../assets/img/album-1.jpg';
 
 import ControlsStacked from './ControlsStacked';
+import Player from './Player';
 
 const AudioPlayer = styled.div`
     background-color: #262930;  
@@ -69,7 +70,8 @@ export const MusicPlayer = () => { // eslint-disable-line import/prefer-default-
               <PlayingSong>Im free - Live</PlayingSong>
             </div>
           </SongPlaying>
-          <ControlsStacked />
+          {/* <ControlsStacked /> */}
+          <Player />
           <ExtraActions>
             <div className='prev-song'>
               <img src={repeat} alt='' srcSet='' />
@@ -81,6 +83,7 @@ export const MusicPlayer = () => { // eslint-disable-line import/prefer-default-
               <img src={fullScreen} alt='' srcSet='' />
             </div>
           </ExtraActions>
+
         </AudioPlayer>
       </div>
 

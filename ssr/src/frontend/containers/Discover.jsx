@@ -6,6 +6,7 @@ import { MusicPlayer } from '../components/MusicPlayer/MusicPlayer';
 import songs from '../utils/mocks/songs';
 import { GlobalStyle } from '../GlobalStyles';
 import MobileHeader from '../components/Header/MobileHeader';
+// import FullMusicPlayer from '../components/FullMusicPlayer/FullMusicPlayer';
 
 const Discover = () => (
   <>
@@ -14,6 +15,7 @@ const Discover = () => (
       <GlobalStyle />
       <MobileHeader title="DISCOVER" />
       <SongList songs={songs} onChange="" />
+      {/* <FullMusicPlayer /> */}
       <MusicPlayer />
     </div>
   </>
