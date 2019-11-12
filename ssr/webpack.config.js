@@ -1,5 +1,5 @@
 const path = require('path');
-const HtmlWebPackPlugin = require('html-webpack-plugin');
+// const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 const dotenv = require('dotenv');
@@ -77,6 +77,7 @@ module.exports = {
             loader: 'file-loader',
             options: {
               name: 'assets/[hash].[ext]',
+              filename: './index.html',
             },
           },
         ],
@@ -87,10 +88,10 @@ module.exports = {
     historyApiFallback: true,
   },
   plugins: [
-    new HtmlWebPackPlugin({
-      template: './public/index.html',
-      filename: './index.html',
-    }),
+    // new HtmlWebPackPlugin({
+    //   template: './public/index.html',
+    //   filename: './index.html',
+    // }),
     new MiniCssExtractPlugin({
       filename: 'assets/app.css',
     }),

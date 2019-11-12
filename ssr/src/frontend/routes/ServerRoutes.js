@@ -1,6 +1,7 @@
+/* eslint-disable import/extensions */
 import NotFound from '../containers/NotFound';
 import Discover from '../containers/Discover';
-import FullMusicPlayer from '../components/FullMusicPlayer/FullMusicPlayer';
+import FullMusicPlayer from '../components/FullMusicPlayer/FullMusicPlayer.jsx';
 
 const serverRoutes = [
   {

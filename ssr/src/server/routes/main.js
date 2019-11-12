@@ -17,6 +17,7 @@ const initialState = {
 
 const main = (req, res, next) => {
   try {
+    console.log('try');
     const store = createStore(reducer, initialState);
     const html = renderToString(
       <Provider store={store}>

@@ -1,5 +1,6 @@
 const render = (html, preloadedState) => {
-  return `
+  console.log('render/index - rendered');
+  const result = `
   <!DOCTYPE html>
     <html>
       <head>
@@ -22,6 +23,7 @@ const render = (html, preloadedState) => {
       </body>
     </html>
   `;
+  return result;
 };
 
 export default render;
