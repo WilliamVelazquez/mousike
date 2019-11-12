@@ -47,15 +47,17 @@ const MobileHeader = (props) => {
     MobileHeaderWrapper.defaultProps.theme.background = 'none';
   }
   return (
-    <MobileHeaderWrapper>
-      <IconWrapper>
-        <LogoImg src={logo} alt="" />
-      </IconWrapper>
-      <Title>{title || 'DISCOVER'}</Title>
-      <IconWrapper>
-        <HamburgerMenuImg src={hamburgerIcon} alt="" />
-      </IconWrapper>
-    </MobileHeaderWrapper>
+    <div>
+      <MobileHeaderWrapper>
+        <IconWrapper>
+          <LogoImg src={logo} alt="" />
+        </IconWrapper>
+        <Title>{title || 'DISCOVER'}</Title>
+        <IconWrapper>
+          <HamburgerMenuImg src={hamburgerIcon} alt="" />
+        </IconWrapper>
+      </MobileHeaderWrapper>
+    </div>
   );
 };
 

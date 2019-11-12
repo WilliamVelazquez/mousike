@@ -61,7 +61,7 @@ export const MusicPlayer = () => {
   // eslint-disable-line import/prefer-default-export
   return (
     <>
-      <div>
+      <nav>
         <AudioPlayer>
           <SongPlaying>
             <CoverImage src={coverImage} alt="" srcSet="" />
@@ -83,7 +83,7 @@ export const MusicPlayer = () => {
             </div>
           </ExtraActions>
         </AudioPlayer>
-      </div>
+      </nav>
     </>
   );
 };
