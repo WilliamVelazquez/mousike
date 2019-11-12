@@ -1,4 +1,4 @@
-const render = (html, preloadedState) => {
+const render = (html, preloadedState, styles) => {
   console.log('render/index - rendered');
   const result = `
   <!DOCTYPE html>
@@ -6,6 +6,7 @@ const render = (html, preloadedState) => {
       <head>
         <title>Platzi Store</title>
         <link rel="stylesheet" href="assets/app.css" type="text/css"></link>
+        ${styles}        
         <script src="https://kit.fontawesome.com/473d269aa9.js"></script>
       </head>
       <body>
