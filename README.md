@@ -24,8 +24,6 @@ npm run front
 npm run storybook
 ```
 
-
-
 ## **mousike-api**: 
 
 This folder contains the api with the main role of connecting to the database, for run this server just type:
