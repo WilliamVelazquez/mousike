@@ -2,9 +2,11 @@
 
 This project has 3 main folders
 
-## **ssr-frontend**: 
+## **frontend**
 
 This is the main React Folder, It contains every component and the app logic, It is structured with 3 main functionalities:
+Enter `frontend`folder and type:
+
 
 1. Render the frontend via ssr (server side rendering)
 
@@ -24,19 +26,19 @@ npm run front
 npm run storybook
 ```
 
-## **mousike-api**: 
+## **api-server**
 
 This folder contains the api with the main role of connecting to the database, for run this server just type:
-Enter `mousike-api`folder and type:
+Enter `api-server`folder and type:
 
 ```bash
 npm run start
 ```
 
-## **ssr-server**: 
+## **client-server**
 
 This folder contains the api with the main role of being used by the non-administrator user, being consumed by the frontend with read permissions.
-Enter `ssr-server`folder and type:
+Enter `client-server`folder and type:
 
 * ```bash
   npm run start
