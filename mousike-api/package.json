@@ -19,10 +19,11 @@
     "bcrypt": "^3.0.6",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
-    "helmet": "^3.19.0",
+    "helmet": "^3.21.2",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.2.7",
     "passport": "^0.4.0",
+    "passport-facebook": "^3.0.0",
     "passport-http": "^0.3.0",
     "passport-jwt": "^4.0.0"
   },
