@@ -5,16 +5,28 @@ const jwt = require('jsonwebtoken');
 const ApiKeysService = require('../services/apiKeys');
 const UsersService = require('../services/users');
 const validationHandler = require('../utils/middleware/validationHandler');
+const cookieSession = require('cookie-session');
+const { config } = require('../config');
 
 const {
   createUserSchema,
   createProviderUserSchema
 } = require('../utils/schemas/users');
 
-const { config } = require('../config');
+// Middleware to check if the user is authenticated
+function isUserAuthenticated(req, res, next) {
+  if (req.user) {
+    next();
+  } else {
+    res.send('You must login!');
+  }
+}
 
 // Basic strategy
 require('../utils/auth/strategies/basic');
+
+// Google strategy
+require('../utils/auth/strategies/google');
 
 function authApi(app) {
   const router = express.Router();
@@ -23,20 +35,55 @@ function authApi(app) {
   const apiKeysService = new ApiKeysService();
   const usersService = new UsersService();
 
-  router.post('/sign-in', async function(req, res, next) {
+  // cookieSession config
+  app.use(cookieSession({
+    maxAge: 24 * 60 * 60 * 1000, // One day in milliseconds
+    keys: ['randomstringhere']
+  }));
+
+  app.use(passport.initialize()); // Used to initialize passport
+  app.use(passport.session()); // Used to persist login sessions
+
+  // Used to stuff a piece of information into a cookie
+  passport.serializeUser((user, done) => {
+    done(null, user);
+  });
+
+  // Used to decode the received cookie and persist session
+  passport.deserializeUser((user, done) => {
+    done(null, user);
+  });
+
+  // Acces by /api/auth/sign-in/google
+  router.get('/sign-in/google', passport.authenticate('google', {
+    scope: ['profile'] // Used to specify the required data
+  }))
+
+  // Acces by /api/auth/google/callback
+  // The middleware receives the data from Google and runs the function on Strategy config
+  router.get('/google/callback', passport.authenticate('google'), (req, res) => {
+    res.redirect('/api/auth/home');
+  });
+
+  // Secret route
+  router.get('/home', isUserAuthenticated, (req, res) => {
+    res.send('You have reached the secret route');
+  });
+
+  router.post('/sign-in', async function (req, res, next) {
     const { apiKeyToken } = req.body;
 
     if (!apiKeyToken) {
       next(boom.unauthorized('apiKeyToken is required'));
     }
 
-    passport.authenticate('basic', function(error, user) {
+    passport.authenticate('basic', function (error, user) {
       try {
         if (error || !user) {
           next(boom.unauthorized());
         }
 
-        req.login(user, { session: false }, async function(error) {
+        req.login(user, { session: false }, async function (error) {
           if (error) {
             next(error);
           }
@@ -68,7 +115,7 @@ function authApi(app) {
     })(req, res, next);
   });
 
-  router.post('/sign-up', validationHandler(createUserSchema), async function(
+  router.post('/sign-up', validationHandler(createUserSchema), async function (
     req,
     res,
     next
@@ -90,7 +137,7 @@ function authApi(app) {
   router.post(
     '/sign-provider',
     validationHandler(createProviderUserSchema),
-    async function(req, res, next) {
+    async function (req, res, next) {
       const { body } = req;
 
       const { apiKeyToken, ...user } = body;

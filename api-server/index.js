@@ -6,6 +6,7 @@ const { config } = require('./config/index');
 
 const authApi = require('./routes/auth');
 const moviesApi = require('./routes/movies.js');
+const musicApi = require('./routes/spotify.js');
 const userMoviesApi = require('./routes/userMovies.js');
 
 const {
@@ -23,6 +24,7 @@ app.use(helmet());
 // routes
 authApi(app);
 moviesApi(app);
+musicApi(app);
 userMoviesApi(app);
 
 // Catch 404
@@ -33,6 +35,4 @@ app.use(logErrors);
 app.use(wrapErrors);
 app.use(errorHandler);
 
-app.listen(config.port, function() {
-  console.log(`Listening http://localhost:${config.port}`);
-});
+app.listen(config.port);
