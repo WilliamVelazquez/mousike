@@ -1,118 +1,64 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import { loginUser } from '../actions';
-import Header from '../components/Header/Header';
-// import LoginLayout from '../components/LoginLayout';
-import {
-  LoginSection,
-  LoginContainer,
-  LoginForm,
-  LoginInput,
-  LoginButton,
-  LoginRegister,
-  LoginRememberMe,
-  InputContainer,
-  LoginInputLabel,
-} from './LoginStyles';
-import { GlobalStyle } from '../GlobalStyles';
+// import classNames from 'classnames';
+import gravatar from '../../utils/gravatar';
+import { logoutRequest } from '../../actions';
+// import '../assets/styles/components/Header.scss';
+import logo from '../../assets/static/logo-platzi-video-BW2.png';
+import userIcon from '../../assets/static/user-icon.png';
 
-const Login = (props) => {
-  const [form, setValues] = useState({
-    email: '',
-  });
+const Header = (props) => {
+  const { user } = props;
+  const hasUser = Object.keys(user).length > 0;
 
-  const handleInput = (event) => {
-    setValues({
-      ...form,
-      [event.target.name]: event.target.value,
-    });
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    loginUser(form, '/');
-  };
-
-  const html = (
-    <>
-      <GlobalStyle />
-
-      <Header isLogin />
-      <LoginSection
-        className="login"
-      >
-        <LoginContainer className="login__container">
-          <h2 style={{ marginBottom: '30px' }}>Inicia sesión</h2>
-          <LoginForm className="login__container--form" onSubmit={handleSubmit}>
-            <InputContainer className="inputContainer">
-              <LoginInputLabel htmlFor="email" className="floatLabel">Email</LoginInputLabel>
-              <LoginInput
-                className="input"
-                id="email"
-                name="email"
-                type="text"
-                placeholder="Correo"
-                onChange={handleInput}
-                required
-              />
-            </InputContainer>
-            <InputContainer>
-              <LoginInputLabel htmlFor="password">Contraseña</LoginInputLabel>
-              <LoginInput
-                className="input"
-                id="password"
-                name="password"
-                type="password"
-                placeholder="Contraseña"
-                onChange={handleInput}
-                required
-              />
-            </InputContainer>
-            <LoginButton
-              className="button"
-              type="submit"
-            >
-            Iniciar sesión
-            </LoginButton>
-            <LoginRememberMe className="login__container--remember-me">
-              <label htmlFor="cbox1">
-                <input
-                  id="cbox1"
-                  type="checkbox"
-                  value="first_checkbox"
-                />
-                Recuérdame
-              </label>
-              <a href="/">Olvidé mi contraseña</a>
-            </LoginRememberMe>
-          </LoginForm>
-          <LoginRegister
-            className="login__container--register"
-          >
-            <br />
-            ¿No tienes ninguna cuenta?:
-            {' '}
-            <Link to="/register">
-              Regístrate acá.
-            </Link>
-
-          </LoginRegister>
-          <br />
-          <p style={{ textAlign: 'center' }}>Ó</p>
-          <h2 style={{ marginTop: '10px' }}>Continúa con redes sociales</h2>
-          {/* <LoginLayout /> */}
-
-        </LoginContainer>
-      </LoginSection>
-    </>
+  //   const handleLogout = () => {
+  //     document.cookie = 'email=';
+  //     document.cookie = 'name=';
+  //     document.cookie = 'id=';
+  //     document.cookie = 'token=';
+  //     props.logoutRequest({});
+  //     window.location.href = '/login';
+  //   };
+  //   const headerClass = classNames('header', {
+  //     isLogin,
+  //     isRegister,
+  //   });
+  return (
+    <header className={headerClass}>
+      <Link to="/">
+        <img className="header__img" src={logo} alt="Platzi Video" />
+      </Link>
+      <div className="header__menu">
+        <div className="header__menu--profile">
+          {hasUser ?
+            <img src={gravatar(user.email)} alt={user.email} /> :
+            <img src={userIcon} alt="" />
+          }
+          <p>Perfil</p>
+        </div>
+        <ul>
+          {hasUser ?
+            <li><a href="/">{user.name}</a></li> : null
+          }
+          {hasUser ?
+            // <li><a href="#logout" onClick={handleLogout}>Cerrar Sesión</a></li> :
+            <li><Link to="/login">Iniciar sesión</Link></li>
+          }
+        </ul>
+      </div>
+    </header>
   );
-  return html;
+};
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
 };
 
 const mapDispatchToProps = {
-  loginUser,
+  logoutRequest,
 };
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

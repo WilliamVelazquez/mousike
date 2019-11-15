@@ -6,7 +6,7 @@ import { MusicPlayer } from '../components/MusicPlayer/MusicPlayer';
 import songs from '../utils/mocks/songs';
 import { GlobalStyle } from '../GlobalStyles';
 import MobileHeader from '../components/Header/MobileHeader';
-// import Header2 from '../components/Header/Header2';
+import Header2 from '../components/Header/Header2';
 // import FullMusicPlayer from '../components/FullMusicPlayer/FullMusicPlayer';
 
 const Discover = () => (
@@ -14,7 +14,7 @@ const Discover = () => (
     <div className="tabs">
       {/* <TabsHeader /> */}
       <GlobalStyle />
-      {/* <Header2 /> */}
+      <Header2 />
       <MobileHeader title="DISCOVER" />
       <SongList songs={songs} onChange="" />
       {/* <FullMusicPlayer /> */}

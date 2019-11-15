@@ -1,29 +1,93 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import classNames from 'classnames';
+// import classNames from 'classnames';
 import gravatar from '../../utils/gravatar';
 import { logoutRequest } from '../../actions';
 // import '../assets/styles/components/Header.scss';
+import styled from 'styled-components';
 import logo from '../../assets/static/logo-platzi-video-BW2.png';
 import userIcon from '../../assets/static/user-icon.png';
+
+
+import styled from 'styled-components';
+
+// .isLogin, .isRegister `
+//     background-color: #21c08b;
+// `
+const HeaderWrapper = styled.header`;
+    align-items: center;
+    background: #8f57fd;
+    color: white;
+    display: flex;
+    height: 100px;
+    justify-content: space-between;
+    top: 0px;
+    width: 100%;
+`;
+
+const HeaderImg = styled.img`
+    margin-left: 30px;
+    width: 200px;
+`;
+
+const HeaderMenu = styled.div`
+      margin-right: 30px;
+      & > ul {
+        display: none;
+        list-style: none;
+        margin: 0px 0px 0px -14px;
+        padding: 0px;
+        position: absolute;
+        width: 100px;
+        text-align: right;
+      }
+      :hover > ul{
+        display: block;
+      }
+      & > li {
+        margin: 10px 0px;
+        & > a {
+            color: white;
+            text-decoration: none;
+            :hover{
+                text-decoration: underline;
+            }
+        }
+      }
+  `;
+
+const HeaderProfile = styled.div`
+    align-items: center;
+    display: flex;
+    cursor: pointer;
+    & > img {
+        margin-right: 8px;
+        width: 40px;
+        border-radius: 100%;
+        object-fit: cover;
+    }
+`;
+
+
 
 const Header = (props) => {
   const { user, isLogin, isRegister } = props;
   const hasUser = Object.keys(user).length > 0;
 
-  const handleLogout = () => {
-    document.cookie = 'email=';
-    document.cookie = 'name=';
-    document.cookie = 'id=';
-    document.cookie = 'token=';
-    props.logoutRequest({});
-    window.location.href = '/login';
-  };
-  const headerClass = classNames('header', {
-    isLogin,
-    isRegister,
-  });
+//   const handleLogout = () => {
+//     document.cookie = 'email=';
+//     document.cookie = 'name=';
+//     document.cookie = 'id=';
+//     document.cookie = 'token=';
+//     props.logoutRequest({});
+//     window.location.href = '/login';
+//   };
+  //   const headerClass = classNames('header', {
+  //     isLogin,
+  //     isRegister,
+  //   });
+
   return (
     <header className={headerClass}>
       <Link to="/">
@@ -42,7 +106,7 @@ const Header = (props) => {
             <li><a href="/">{user.name}</a></li> : null
           }
           {hasUser ?
-            <li><a href="#logout" onClick={handleLogout}>Cerrar Sesión</a></li> :
+            // <li><a href="#logout" onClick={handleLogout}>Cerrar Sesión</a></li> :
             <li><Link to="/login">Iniciar sesión</Link></li>
           }
         </ul>
