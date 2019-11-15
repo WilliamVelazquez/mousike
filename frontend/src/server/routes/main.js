@@ -22,13 +22,17 @@ const main = (req, res, next) => {
   try {
     try {
       const { email, name, id } = req.cookies;
-      console.log('helloworld');
-      initialState = {
-        user: {
+      let user = {};
+      if (email || name || id) {
+        user = {
           id,
           email,
           name,
-        },
+        };
+      }
+      console.log('helloworld');
+      initialState = {
+        user,
         playing: {},
         myList: [],
         trends: [],
