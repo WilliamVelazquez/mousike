@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import logo from '../../assets/static/logo-top-bar-mobile.png';
 import hamburgerIcon from '../../assets/static/hamburger menu icon.png';
+import ProfileMenu from './ProfileMenu';
 
 const MobileHeaderWrapper = styled.div`
   width: 100%;
@@ -53,9 +54,10 @@ const MobileHeader = (props) => {
           <LogoImg src={logo} alt="" />
         </IconWrapper>
         <Title>{title || 'DISCOVER'}</Title>
-        <IconWrapper>
+        {/* <IconWrapper>
           <HamburgerMenuImg src={hamburgerIcon} alt="" />
-        </IconWrapper>
+        </IconWrapper> */}
+        <ProfileMenu />
       </MobileHeaderWrapper>
     </div>
   );

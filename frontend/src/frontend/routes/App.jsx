@@ -9,9 +9,10 @@ import {
 import { createBrowserHistory } from 'history';
 import NotFound from '../containers/NotFound';
 import Discover from '../containers/Discover';
-import FullMusicPlayer from '../components/FullMusicPlayer/FullMusicPlayer';
+import FullMusicPlayer from '../components/experiments/FullMusicPlayer/FullMusicPlayer';
 import Register from '../containers/Register';
 import Login from '../containers/Login';
+import Hamburger from '../components/experiments/HamburgerMenu/Hamburger';
 import LoginLayout from '../components/LoginLayout';
 
 const App = ({ isLogged }) => {
@@ -28,6 +29,7 @@ const App = ({ isLogged }) => {
         {/* <Route exact path="/login2" component={LoginLayout} /> */}
         <Route exact path="/discover" component={isLogged ? Discover : Login} />
         <Route exact path="/player" component={FullMusicPlayer} />
+        <Route exact path="/hamburger" component={Hamburger} />
         <Route component={NotFound} />
       </Switch>
       {/* </Layout> */}
