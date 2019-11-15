@@ -38,7 +38,7 @@ export const registerUser = (payload, redirectUrl) => {
   };
 };
 
-export const loginUser = ({ email, password }, redirecUrl) => {
+export const loginUser = ({ email, password }, redirectUrl) => {
   return (dispatch) => {
     axios({
       url: '/auth/sign-in',
@@ -49,13 +49,14 @@ export const loginUser = ({ email, password }, redirecUrl) => {
       },
     })
       .then(({ data }) => {
-        document.cookie = `email=${data.email}`;
-        document.cookie = `name=${data.name}`;
-        document.cookie = `id=${data.id}`;
+        console.log(data);
+        document.cookie = `email=${data.user.email}`;
+        document.cookie = `name=${data.user.name}`;
+        document.cookie = `id=${data.user.id}`;
         dispatch(loginRequest(data));
       })
       .then(() => {
-        window.location.href = redirecUrl;
+        window.location.href = redirectUrl;
       })
       .catch(err => dispatch(setError(err)));
   };

@@ -50,7 +50,7 @@ if (ENV === 'development') {
 }
 
 //  Basic strategy
-// require('./utils/auth/strategies/basic');
+require('./utils/auth/strategies/basic');
 // OAuth strategy
 // require('./utils/auth/strategies/oauth');
 // Twitter strategy

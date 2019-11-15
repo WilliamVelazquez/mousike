@@ -10,20 +10,43 @@ import Layout from '../../frontend/components/Layout';
 import reducer from '../../frontend/reducers';
 import render from '../render';
 
-const initialState = {
-  cart: [],
-  products: [],
-};
+// import initialState from '../../frontend/initialState';
 
+// const initialState = {
+//   cart: [],
+//   products: [],
+// };
+
+let initialState;
 const main = (req, res, next) => {
   try {
-    console.log('try');
+    try {
+      const { email, name, id } = req.cookies;
+      console.log('helloworld');
+      initialState = {
+        user: {
+          id,
+          email,
+          name,
+        },
+        playing: {},
+        myList: [],
+        trends: [],
+        originals: [],
+      };
+    } catch (error) {
+      console.log(error);
+    }
+
+    console.log('initialState.user.id', initialState.user.id);
+    console.log('Here is the initial state id', initialState.user.id);
+    const isLogged = (initialState.user.id);
     const store = createStore(reducer, initialState);
     const sheet = new ServerStyleSheet(); // <-- creating out stylesheet
     const reactElements = (
       <Provider store={store}>
         <StaticRouter location={req.url} context={{}}>
-          <Layout>{renderRoutes(Routes)}</Layout>
+          <Layout>{renderRoutes(Routes(isLogged))}</Layout>
         </StaticRouter>
       </Provider>
     );

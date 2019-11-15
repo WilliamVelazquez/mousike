@@ -105,8 +105,6 @@ export const RegisterButton = styled.button`
     background-color:white;
     border-radius:500px;
     border: 1px #ccc solid;
-    /* border-color:#ccc;
-    border-style:solid; */
     box-shadow:#616467 0px 0px 0px 2px inset;
     box-sizing:border-box;
     color:#616467;

@@ -32,7 +32,7 @@ const Login = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.loginUser(form, '/');
+    loginUser(form, '/');
   };
 
   const html = (

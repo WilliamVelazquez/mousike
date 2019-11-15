@@ -19,7 +19,7 @@ const store = createStore(reducer, preloadedState, composeEnhacers(applyMiddlewa
 
 hydrate(
   <Provider store={store}>
-    <App />
+    <App isLogged={(preloadedState.user.id)} />
   </Provider>,
   document.getElementById('app'),
 );
