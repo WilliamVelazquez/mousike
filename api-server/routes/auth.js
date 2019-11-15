@@ -28,7 +28,7 @@ function isUserAuthenticated(req, res, next) {
 require('../utils/auth/strategies/basic');
 
 // Google strategy
-require('../utils/auth/strategies/google');
+// require('../utils/auth/strategies/google');
 
 function authApi(app) {
   const router = express.Router();
@@ -57,15 +57,15 @@ function authApi(app) {
   });
 
   // Acces by /api/auth/sign-in/google
-  router.get('/sign-in/google', passport.authenticate('google', {
-    scope: ['profile'] // Used to specify the required data
-  }))
+  // router.get('/sign-in/google', passport.authenticate('google', {
+  //   scope: ['profile'] // Used to specify the required data
+  // }))
 
   // Acces by /api/auth/google/callback
   // The middleware receives the data from Google and runs the function on Strategy config
-  router.get('/google/callback', passport.authenticate('google'), (req, res) => {
-    res.redirect('/api/auth/home');
-  });
+  // router.get('/google/callback', passport.authenticate('google'), (req, res) => {
+  //   res.redirect('/api/auth/home');
+  // });
 
   // Secret route
   router.get('/home', isUserAuthenticated, (req, res) => {

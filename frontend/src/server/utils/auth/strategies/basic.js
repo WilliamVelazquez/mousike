@@ -9,14 +9,14 @@ passport.use(
     try {
       const { data, status } = await axios({
         url: `${config.apiUrl}/api/auth/sign-in`,
-        method: "post",
+        method: 'post',
         auth: {
           password,
-          username: email
+          username: email,
         },
         data: {
-          apiKeyToken: config.apiKeyToken
-        }
+          apiKeyToken: config.apiKeyToken,
+        },
       });
 
       if (!data || status !== 200) {
