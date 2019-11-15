@@ -1,10 +1,11 @@
 /* eslint-disable import/extensions */
 import NotFound from '../containers/NotFound';
 import Discover from '../containers/Discover';
-import FullMusicPlayer from '../components/FullMusicPlayer/FullMusicPlayer.jsx';
+import FullMusicPlayer from '../components/experiments/FullMusicPlayer/FullMusicPlayer';
 import Register from '../containers/Register';
 import Login from '../containers/Login';
 import LoginLayout from '../components/LoginLayout';
+import Hamburger from '../components/experiments/HamburgerMenu/Hamburger';
 
 const serverRoutes = (isLogged) => {
   console.log(isLogged);
@@ -29,6 +30,11 @@ const serverRoutes = (isLogged) => {
       component: Login,
       exact: true,
     },
+    // {
+    //   path: '/hamburger',
+    //   component: Hamburger,
+    //   exact: true,
+    // },
     {
       path: '/register',
       component: Register,
@@ -44,6 +50,7 @@ const serverRoutes = (isLogged) => {
       component: FullMusicPlayer,
       exact: true,
     },
+
     {
       name: 'NotFound',
       component: NotFound,
