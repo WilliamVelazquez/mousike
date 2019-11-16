@@ -15,7 +15,7 @@ const AudioPlayer = styled.div`
   justify-items: center; //horizontal
   grid-gap: 10px;
   padding: 20px;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
 `;
