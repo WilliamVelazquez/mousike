@@ -1,21 +1,40 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import {
+  // BrowserRouter,
+  Router,
+  Switch,
+  Route,
+} from 'react-router-dom';
 // import Layout from '../components/Layout';
+import { createBrowserHistory } from 'history';
 import NotFound from '../containers/NotFound';
 import Discover from '../containers/Discover';
-import FullMusicPlayer from '../components/FullMusicPlayer/FullMusicPlayer';
+import FullMusicPlayer from '../components/experiments/FullMusicPlayer/FullMusicPlayer';
+import Register from '../containers/Register';
+import Login from '../containers/Login';
+import Hamburger from '../components/experiments/HamburgerMenu/Hamburger';
+import LoginLayout from '../components/LoginLayout';
 
-const App = () => (
-  <BrowserRouter>
-    {/* <Layout> */}
-    <Switch>
-      <Route exact path="/" component={Discover} />
-      <Route exact path="/discover" component={Discover} />
-      <Route exact path="/player" component={FullMusicPlayer} />
-      <Route component={NotFound} />
-    </Switch>
-    {/* </Layout> */}
-  </BrowserRouter>
-);
+const App = ({ isLogged }) => {
+  console.log('ratata islogged', isLogged);
+  const history = createBrowserHistory();
+  return (
+    <Router history={history}>
+      {/* behagoras if uncomment the images stop loading */}
+      {/* <Layout> */}
+      <Switch>
+        <Route exact path="/" component={isLogged ? Discover : Login} />
+        <Route exact path="/register" component={Register} />
+        <Route exact path="/login" component={Login} />
+        {/* <Route exact path="/login2" component={LoginLayout} /> */}
+        <Route exact path="/discover" component={isLogged ? Discover : Login} />
+        <Route exact path="/player" component={FullMusicPlayer} />
+        <Route exact path="/hamburger" component={Hamburger} />
+        <Route component={NotFound} />
+      </Switch>
+      {/* </Layout> */}
+    </Router>
+  );
+};
 
 export default App;

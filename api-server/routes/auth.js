@@ -1,11 +1,13 @@
+/* eslint-disable consistent-return */
+/* eslint-disable func-names */
 const express = require('express');
 const passport = require('passport');
 const boom = require('@hapi/boom');
 const jwt = require('jsonwebtoken');
+const cookieSession = require('cookie-session');
 const ApiKeysService = require('../services/apiKeys');
 const UsersService = require('../services/users');
 const validationHandler = require('../utils/middleware/validationHandler');
-const cookieSession = require('cookie-session');
 const { config } = require('../config');
 
 const {
@@ -26,7 +28,7 @@ function isUserAuthenticated(req, res, next) {
 require('../utils/auth/strategies/basic');
 
 // Google strategy
-require('../utils/auth/strategies/google');
+// require('../utils/auth/strategies/google');
 
 function authApi(app) {
   const router = express.Router();
@@ -55,15 +57,15 @@ function authApi(app) {
   });
 
   // Acces by /api/auth/sign-in/google
-  router.get('/sign-in/google', passport.authenticate('google', {
-    scope: ['profile'] // Used to specify the required data
-  }))
+  // router.get('/sign-in/google', passport.authenticate('google', {
+  //   scope: ['profile'] // Used to specify the required data
+  // }))
 
   // Acces by /api/auth/google/callback
   // The middleware receives the data from Google and runs the function on Strategy config
-  router.get('/google/callback', passport.authenticate('google'), (req, res) => {
-    res.redirect('/api/auth/home');
-  });
+  // router.get('/google/callback', passport.authenticate('google'), (req, res) => {
+  //   res.redirect('/api/auth/home');
+  // });
 
   // Secret route
   router.get('/home', isUserAuthenticated, (req, res) => {
@@ -83,9 +85,9 @@ function authApi(app) {
           next(boom.unauthorized());
         }
 
-        req.login(user, { session: false }, async function (error) {
-          if (error) {
-            next(error);
+        req.login(user, { session: false }, async function (err) {
+          if (err) {
+            next(err);
           }
 
           const apiKey = await apiKeysService.getApiKey({ token: apiKeyToken });
@@ -109,8 +111,8 @@ function authApi(app) {
 
           return res.status(200).json({ token, user: { id, name, email } });
         });
-      } catch (error) {
-        next(error);
+      } catch (err) {
+        next(err);
       }
     })(req, res, next);
   });
@@ -168,8 +170,8 @@ function authApi(app) {
         });
 
         return res.status(200).json({ token, user: { id, name, email } });
-      } catch (error) {
-        next(error);
+      } catch (err) {
+        next(err);
       }
     }
   );

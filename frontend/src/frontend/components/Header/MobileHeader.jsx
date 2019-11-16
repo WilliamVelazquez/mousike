@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import logo from '../../assets/static/logo-top-bar-mobile.png';
-import hamburgerIcon from '../../assets/static/hamburger menu icon.png';
+import ProfileMenu from './ProfileMenu';
 
 const MobileHeaderWrapper = styled.div`
   width: 100%;
@@ -35,10 +35,6 @@ const LogoImg = styled.img`
 const Title = styled.h2`
   text-align: center;
 `;
-const HamburgerMenuImg = styled.img`
-  width: 19px;
-  height: auto;
-`;
 
 const MobileHeader = (props) => {
   const { title, styled } = props;
@@ -53,9 +49,7 @@ const MobileHeader = (props) => {
           <LogoImg src={logo} alt="" />
         </IconWrapper>
         <Title>{title || 'DISCOVER'}</Title>
-        <IconWrapper>
-          <HamburgerMenuImg src={hamburgerIcon} alt="" />
-        </IconWrapper>
+        <ProfileMenu />
       </MobileHeaderWrapper>
     </div>
   );

@@ -4,6 +4,7 @@
 
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 import { SongElement } from './SongElement';
 
 const SongListStyle = styled.ol`
@@ -12,25 +13,48 @@ const SongListStyle = styled.ol`
 `;
 
 // eslint-disable-next-line import/prefer-default-export
-export const SongList = (props) => {
-  const { songs } = props;
+const SongList = ({
+  songs,
+  playing,
+  myList,
+  trends,
+  originals }) => {
+
+  console.log(songs);
+  console.log(playing);
+  console.log(myList);
+  console.log(trends);
+  console.log(originals);
   return (
     <SongListStyle>
-      {songs &&
-        songs.map((song) => {
-          const { name, duration, href, key } = song;
+      {trends &&
+        trends.map((song) => {
+          console.log(song);
+          const { name, preview: href, _id: key } = song;
           // console.log(song);
           return (
             <SongElement
               key={key}
               name={name}
-              duration={duration}
+              duration="13"
               href={href}
             />
           );
         })}
+
     </SongListStyle>
   );
 };
 
-export default SongList;
+const mapStateToProps = (state) => {
+  console.log('state');
+  console.log(state);
+  return {
+    playing: state.playing,
+    myList: state.myList,
+    trends: state.trends,
+    originals: state.originals,
+  };
+};
+
+export default connect(mapStateToProps, null)(SongList);

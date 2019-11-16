@@ -1,3 +1,8 @@
+import getManifest from '../getManifest';
+
+let files = false;
+if (process.env.NODE_ENV !== 'development') files = getManifest();
+
 const render = (html, preloadedState, styles) => {
   console.log('render/index - rendered');
   const result = `

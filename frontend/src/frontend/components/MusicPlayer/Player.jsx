@@ -198,37 +198,37 @@ class Player extends React.Component {
     }
 
     return (
-      <PlayerWrapper className='player'>
-        <Controls className='controls'>
-          <ControlsButton type='button' onClick={this.previousSongHandler.bind(this)}>
-            <i className='fa fa-chevron-left' aria-hidden='true' />
+      <PlayerWrapper className="player">
+        <Controls className="controls">
+          <ControlsButton type="button" onClick={this.previousSongHandler.bind(this)}>
+            <i className="fa fa-chevron-left" aria-hidden="true" />
           </ControlsButton>
-          <ControlsButton type='button' onClick={this.togglePlay.bind(this)}>
-            <i className={playing ? 'fa fa-pause' : 'fa fa-play'} aria-hidden='true' />
+          <ControlsButton type="button" onClick={this.togglePlay.bind(this)}>
+            <i className={playing ? 'fa fa-pause' : 'fa fa-play'} aria-hidden="true" />
           </ControlsButton>
-          <ControlsButton type='button' onClick={this.nextSongHandler.bind(this)}>
-            <i className='fa fa-chevron-right' aria-hidden='true' />
+          <ControlsButton type="button" onClick={this.nextSongHandler.bind(this)}>
+            <i className="fa fa-chevron-right" aria-hidden="true" />
           </ControlsButton>
         </Controls>
         <div>
           <Progress
             onClick={this.setProgress.bind(this)}
-            className='progress'
+            className="progress"
           >
-            <Bar className='bar' ref='progressBar'>
+            <Bar className="bar" ref="progressBar">
               <div style={{ width: `${progress * 100}%` }} />
             </Bar>
           </Progress>
-          <Time className='time'>
+          <Time className="time">
             {humanTime}
           </Time>
 
         </div>
-        <AudioPlayer ref='player'>
+        <AudioPlayer ref="player">
           <source src={file} />
           <track
             default
-            kind='captions'
+            kind="captions"
           />
         </AudioPlayer>
       </PlayerWrapper>
