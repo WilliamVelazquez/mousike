@@ -16,7 +16,7 @@ class SpotifyService {
 
     const obj = response.tracks.items.map(item => {
       let artists;
-      item.artists.map(artist => artists = !artists ? artists = artist.name : artists + `, ${artist.name}`)
+      item.artists.map(artist => artists = !artists ? artists = artist.name : `${artists  }, ${artist.name}`)
       return {
         name: item.name,
         preview: item.preview_url,
@@ -36,12 +36,21 @@ class SpotifyService {
     
     const obj = response.tracks.items.map(item => {
       let artists;
-      item.artists.map(artist => artists = !artists ? artists = artist.name : artists + `, ${artist.name}`)
-      return {
-        name: item.name,
-        preview: item.preview_url,
-        artist: artists
-      };
+      // let albums;
+      // console.log (item.track);
+      item.track.artists.map(artist => artists = !artists ? artists = artist.name : `${artists  }, ${artist.name}`)
+      // item.track.album.map(album => albums = !albums ? albums = album.name : `${albums  }, ${album.name}`)
+      // item.track.artists.map(artist => artists = !artists ? artists = artist.name : `${artists  }, ${artist.name}`)
+      // item.track.artists.map(artist => artists = !artists ? artists = artist.name : `${artists  }, ${artist.name}`)
+        return {
+          _id:item.track.href,
+          name: item.track.name,
+          preview: item.track.preview_url,
+          images:item.track.album.images,
+          album:item.track.album.name,
+          artist: artists
+        };
+            
     })
 
     return obj;
@@ -52,7 +61,7 @@ class SpotifyService {
     
     const obj = response.tracks.items.map(item => {
       let artists;
-      item.artists.map(artist => artists = !artists ? artists = artist.name : artists + `, ${artist.name}`)
+      item.artists.map(artist => artists = !artists ? artists = artist.name : `${artists  }, ${artist.name}`)
       return {
         name: item.name,
         preview: item.preview_url,

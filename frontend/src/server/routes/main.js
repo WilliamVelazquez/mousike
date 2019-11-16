@@ -5,10 +5,15 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { StaticRouter } from 'react-router';
 import { renderRoutes } from 'react-router-config';
+import axios from 'axios';
 import Routes from '../../frontend/routes/ServerRoutes';
 import Layout from '../../frontend/components/Layout';
 import reducer from '../../frontend/reducers';
 import render from '../render';
+
+require('dotenv').config();
+
+console.log('main.js');
 
 // import initialState from '../../frontend/initialState';
 
@@ -16,12 +21,12 @@ import render from '../render';
 //   cart: [],
 //   products: [],
 // };
-
+// apiKeyToken: config.apiKeyToken
 let initialState;
-const main = (req, res, next) => {
+const main = async (req, res, next) => {
   try {
     try {
-      const { email, name, id } = req.cookies;
+      const { token, email, name, id } = req.cookies;
       let user = {};
       if (email || name || id) {
         user = {
@@ -30,15 +35,32 @@ const main = (req, res, next) => {
           name,
         };
       }
+      console.log('Hey songs list');
+      let songsList = await axios({
+        url: `${process.env.API_URL}/api/music/tracks`,
+        headers: { Authorization: `Bearer ${token}` },
+        method: 'get',
+      });
+      songsList = songsList.data.data;
+
+      console.log(songsList);
+
       console.log('helloworld');
       initialState = {
         user,
         playing: {},
         myList: [],
-        trends: [],
+        trends: songsList,
         originals: [],
       };
     } catch (error) {
+      initialState = {
+        user: {},
+        playing: {},
+        myList: [],
+        trends: {},
+        originals: [],
+      };
       console.log(error);
     }
 

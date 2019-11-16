@@ -3,10 +3,11 @@ const passport = require('passport');
 const SpotifyService = require('../services/spotify');
 
 
-//const validationHandler = require('../utils/middleware/validationHandler');
+// const validationHandler = require('../utils/middleware/validationHandler');
 const scopesValidationHandler = require('../utils/middleware/scopesValidationHandler');
 
 const cacheResponse = require('../utils/cacheResponse');
+
 const FIVE_MINUTES_IN_SECONDS = 1000 * 60 * 5;
 
 // JWT strategy
@@ -21,10 +22,10 @@ function musicApi(app) {
     // GET /api/music/tracks
     router.get(
         '/tracks',
-        //passport.authenticate('jwt', { session: false }),
-        //scopesValidationHandler(['read:movies']),
+        // passport.authenticate('jwt', { session: false }),
+        // scopesValidationHandler(['read:movies']),
         async function (req, res, next) {
-            //cacheResponse(res, FIVE_MINUTES_IN_SECONDS);
+            // cacheResponse(res, FIVE_MINUTES_IN_SECONDS);
 
             try {
                 const tracks = await spotifyService.getDiscover();
@@ -42,10 +43,10 @@ function musicApi(app) {
     // GET /api/music/track
     router.get(
         '/track',
-        //passport.authenticate('jwt', { session: false }),
-        //scopesValidationHandler(['read:movies']),
+        // passport.authenticate('jwt', { session: false }),
+        // scopesValidationHandler(['read:movies']),
         async function (req, res, next) {
-            //cacheResponse(res, FIVE_MINUTES_IN_SECONDS);
+            // cacheResponse(res, FIVE_MINUTES_IN_SECONDS);
             const { name, collections } = req.body;
 
             try {
