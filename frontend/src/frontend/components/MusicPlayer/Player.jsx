@@ -5,6 +5,7 @@
 /* eslint-disable react/no-string-refs */
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 // import loadFiles from '../files';
 const AudioPlayer = styled.audio``;
 const PlayerWrapper = styled.div`
@@ -109,11 +110,14 @@ function formatTime(s, showHours) {
 }
 
 class Player extends React.Component {
-  constructor() {
+  constructor(props) {
     super();
+    const { playing } = props;
+
     this.state = {
       file: encodeURI('https://archive.org/download/vs3s02e01/format=VBR+MP3&ignore=x.mp3'),
-      playing: false,
+      isPlaying: false,
+      playing,
       progress: 0.03,
       humanTime: '00:00',
     };
@@ -122,18 +126,26 @@ class Player extends React.Component {
   }
 
   onUpdate() {
+    const { playing: playingTemp, isPlaying } = this.props;
+    this.setState({ playing: playingTemp });
     const { playing } = this.state;
-    if (playing) {
+    if (playing.songNumber &&
+      playing.playlist[(playing.songNumber)].preview !== this.state.file) {
+      this.setState({
+        file: encodeURI(playing.playlist[(playing.songNumber)].preview),
+      }, this.play.bind(this));
+    }
+
+    if (this.state.isPlaying) {
       const { player } = this.refs;
       this.setState({
         progress: player.currentTime / player.duration,
       });
       const humanTime = formatTime(player.currentTime);
-      // console.log(humanTime);
       this.setState({ humanTime });
-      // console.log((player.currentTime));
       if (player.ended) {
         console.log('song ended');
+        this.nextSong(this.state.playing.songNumber);
       }
     }
 
@@ -141,12 +153,16 @@ class Player extends React.Component {
 
   previousSongHandler(event) {
     event.preventDefault();
-    alert('a');
+    const { songNumber } = this.state.playing;
+    this.prevSong(songNumber);
+    // alert('a');
   }
 
   nextSongHandler(event) {
     event.preventDefault();
-    alert('b');
+    const { songNumber } = this.state.playing;
+    this.nextSong(songNumber);
+    // alert('b');
   }
 
   setProgress(event) {
@@ -162,25 +178,114 @@ class Player extends React.Component {
     this.setState({ progress });
   }
 
+  nextSong(number) {
+    const songNumber = number + 1;
+    const { playing } = this.state;
+    const url = playing.playlist[(songNumber)].preview;
+    if (url) {
+      console.log('encontrando cancion', songNumber);
+      this.props.playing.songNumber = songNumber;
+      this.setState({
+        playing: {
+          songNumber: this.props.playing.songNumber,
+        },
+      });
+    } else {
+      const maxSongs = this.state.playing.playlist.length;
+      if (songNumber < maxSongs - 1) {
+        this.nextSong(songNumber);
+      } else {
+        this.nextSong(-1);
+      }
+    }
+  }
+
+  prevSong(number) {
+    const songNumber = number - 1;
+    const { playing } = this.state;
+    const url = playing.playlist[(songNumber)].preview;
+    if (url) {
+      console.log('encontrando cancion', songNumber);
+      this.props.playing.songNumber = songNumber;
+      this.setState({
+        playing: {
+          songNumber: this.props.playing.songNumber,
+        },
+      });
+    } else {
+      const lastSong = this.state.playing.playlist.length;
+      if (songNumber > 0) {
+        this.prevSong(songNumber);
+      } else {
+        this.prevSong(lastSong);
+      }
+    }
+  }
+
+  play() {
+    console.log('playing')
+    const { player } = this.refs;
+    const { isPlaying } = this.state;
+    if (this.state.file) {
+      if (isPlaying) {
+        this.pause();
+        setTimeout(() => {
+          player.play().then((response) => {
+            this.setState({
+              isPlaying: true,
+            });
+          })
+            .catch(
+              (err) => {
+                console.log(err);
+              },
+            );
+        }, 0);
+
+      } else {
+        player.play().then(
+          () => {
+            this.setState({
+              isPlaying: true,
+            });
+          },
+        );
+      }
+
+    } else {
+      // this.nextSong();
+    }
+  }
+
+  pause(cb) {
+    console.log('pausing');
+    if (this.state.isPlaying) {
+      const { player } = this.refs;
+      player.pause();
+      // .then(
+      //   () => {
+      //     this.setState({
+      //       isPlaying: false,
+      //     }, () => {
+      //       cb && cb();
+      //     });
+      this.setState({
+        isPlaying: false,
+      }, () => {
+        cb && cb();
+      });
+      //   },
+      // );
+    }
+  }
+
   togglePlay() {
     const { player } = this.refs;
     if (player.paused) {
-      player.play();
-      this.setState({
-        playing: true,
-      });
-      // setTimeout(() => {
-      //   const { player } = this.refs;
-      //   player.src = 'https://archive.org/download/20191111_20191111_0757/format=VBR+MP3&ignore=x.mp3';
-      //   player.play();
-      // }, 2000);
+      this.play();
     } else {
-      player.pause();
-      this.setState({
-        playing: false,
-      });
+      this.pause();
     }
-    // console.log(player.paused);
   }
 
   componentDidMount() {
@@ -188,7 +293,7 @@ class Player extends React.Component {
   }
 
   render() {
-    const { playing } = this.state;
+    const { isPlaying } = this.state;
     const { file } = this.state;
     const { player } = this.refs;
     const { progress } = this.state;
@@ -204,7 +309,7 @@ class Player extends React.Component {
             <i className="fa fa-chevron-left" aria-hidden="true" />
           </ControlsButton>
           <ControlsButton type="button" onClick={this.togglePlay.bind(this)}>
-            <i className={playing ? 'fa fa-pause' : 'fa fa-play'} aria-hidden="true" />
+            <i className={isPlaying ? 'fa fa-pause' : 'fa fa-play'} aria-hidden="true" />
           </ControlsButton>
           <ControlsButton type="button" onClick={this.nextSongHandler.bind(this)}>
             <i className="fa fa-chevron-right" aria-hidden="true" />
@@ -236,4 +341,13 @@ class Player extends React.Component {
   }
 }
 
-export default Player;
+const mapStateToProps = (state) => {
+  return {
+    playing: state.playing,
+    myList: state.myList,
+    trends: state.trends,
+    originals: state.originals,
+  };
+};
+
+export default connect(mapStateToProps, null)(Player);

@@ -43,12 +43,16 @@ const main = async (req, res, next) => {
       });
       songsList = songsList.data.data;
 
-      console.log(songsList);
+      // console.log(songsList);
 
       console.log('helloworld');
       initialState = {
         user,
-        playing: {},
+        playing: {
+          songNumber: '',
+          playList: '',
+          // selectedSong: null,
+        },
         myList: [],
         trends: songsList,
         originals: [],

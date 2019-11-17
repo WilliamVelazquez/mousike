@@ -5,6 +5,8 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
+import '@babel/polyfill';
+
 // import Layout from '../components/Layout';
 import { createBrowserHistory } from 'history';
 import NotFound from '../containers/NotFound';

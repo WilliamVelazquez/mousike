@@ -5,7 +5,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { SongElement } from './SongElement';
+import SongElement from './SongElement';
 
 const SongListStyle = styled.ol`
   margin: 0;
@@ -28,16 +28,17 @@ const SongList = ({
   return (
     <SongListStyle>
       {trends &&
-        trends.map((song) => {
-          console.log(song);
-          const { name, preview: href, _id: key } = song;
+        trends.map((song, index) => {
+          // console.log(song);
+          const { name, preview: href, _id: key, durationStr } = song;
           // console.log(song);
           return (
             <SongElement
               key={key}
               name={name}
-              duration="13"
+              duration={durationStr}
               href={href}
+              songNumber={index}
             />
           );
         })}

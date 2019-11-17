@@ -8,8 +8,8 @@ import { withKnobs, text, boolean, color } from '@storybook/addon-knobs';
 
 import { MusicPlayer } from './MusicPlayer/MusicPlayer';
 // Song Elements
-import { SongList } from './SongElements/SongList';
-import { SongElement } from './SongElements/SongElement';
+import SongList from './SongElements/SongList';
+import SongElement from './SongElements/SongElement';
 // Label components
 import { LabelInput } from './LabelInput/LabelInput';
 import { ToggleSwitch } from './ToggleSwitch/ToggleSwitch';
