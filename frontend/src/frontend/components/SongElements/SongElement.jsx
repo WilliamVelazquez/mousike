@@ -77,10 +77,18 @@ const SongElement = (props) => {
   // console.log(props);
   return (
     <Song>
-      <SongLink href={href} onClick={handlePlay}>
-        <SongName>{name}</SongName>
-        <SongDuration>{duration}</SongDuration>
-      </SongLink>
+      {href ? (
+        <SongLink href={href} onClick={handlePlay}>
+          <SongName>{name}</SongName>
+          <SongDuration>{duration}</SongDuration>
+        </SongLink>
+      ) : (
+        <SongLink>
+          <SongName>{name}</SongName>
+          <SongDuration>{duration}</SongDuration>
+        </SongLink>
+      )}
+
       <SongAddImage src={plusIcon} alt="" />
     </Song>
   );

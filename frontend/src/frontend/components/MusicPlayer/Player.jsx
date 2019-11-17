@@ -114,7 +114,6 @@ class Player extends React.Component {
     super();
     const { playing } = props;
 
-    // console.log('playing', playing);
     this.state = {
       file: encodeURI('https://archive.org/download/vs3s02e01/format=VBR+MP3&ignore=x.mp3'),
       isPlaying: false,
@@ -127,40 +126,26 @@ class Player extends React.Component {
   }
 
   onUpdate() {
-    const { player } = this.refs;
-
-    const { playing, isPlaying } = this.props;
-    // console.log(this.props);
-    const cb = () => {
-      this.play();
-      console.log('isPlaying 1', this);
-    };
+    const { playing: playingTemp, isPlaying } = this.props;
+    this.setState({ playing: playingTemp });
+    const { playing } = this.state;
     if (playing.songNumber &&
       playing.playlist[(playing.songNumber)].preview !== this.state.file) {
       this.setState({
         file: encodeURI(playing.playlist[(playing.songNumber)].preview),
-        // isPlaying: !!playing.playlist[(playing.songNumber)].preview, // isPlaying: playing.playlist[(playing.songNumber)].preview ? true : false,
-      }, cb.bind(this));
-      // () => {
-      //   const { player } = this.refs;
-      //   if (!player.paused) {
-      //     this.pause(this.play.bind(this));
-      //   }
-      // }
+      }, this.play.bind(this));
     }
 
-    // const { isPlaying } = this.state;
-    if (isPlaying) {
+    if (this.state.isPlaying) {
       const { player } = this.refs;
       this.setState({
         progress: player.currentTime / player.duration,
       });
       const humanTime = formatTime(player.currentTime);
-      // console.log(humanTime);
       this.setState({ humanTime });
-      // console.log((player.currentTime));
       if (player.ended) {
         console.log('song ended');
+        this.nextSong(this.state.playing.songNumber);
       }
     }
 
@@ -168,12 +153,16 @@ class Player extends React.Component {
 
   previousSongHandler(event) {
     event.preventDefault();
-    alert('a');
+    const { songNumber } = this.state.playing;
+    this.prevSong(songNumber);
+    // alert('a');
   }
 
   nextSongHandler(event) {
     event.preventDefault();
-    alert('b');
+    const { songNumber } = this.state.playing;
+    this.nextSong(songNumber);
+    // alert('b');
   }
 
   setProgress(event) {
@@ -189,22 +178,59 @@ class Player extends React.Component {
     this.setState({ progress });
   }
 
+  nextSong(number) {
+    const songNumber = number + 1;
+    const { playing } = this.state;
+    const url = playing.playlist[(songNumber)].preview;
+    if (url) {
+      console.log('encontrando cancion', songNumber);
+      this.props.playing.songNumber = songNumber;
+      this.setState({
+        playing: {
+          songNumber: this.props.playing.songNumber,
+        },
+      });
+    } else {
+      const maxSongs = this.state.playing.playlist.length;
+      if (songNumber < maxSongs - 1) {
+        this.nextSong(songNumber);
+      } else {
+        this.nextSong(-1);
+      }
+    }
+  }
+
+  prevSong(number) {
+    const songNumber = number - 1;
+    const { playing } = this.state;
+    const url = playing.playlist[(songNumber)].preview;
+    if (url) {
+      console.log('encontrando cancion', songNumber);
+      this.props.playing.songNumber = songNumber;
+      this.setState({
+        playing: {
+          songNumber: this.props.playing.songNumber,
+        },
+      });
+    } else {
+      const lastSong = this.state.playing.playlist.length;
+      if (songNumber > 0) {
+        this.prevSong(songNumber);
+      } else {
+        this.prevSong(lastSong);
+      }
+    }
+  }
+
   play() {
+    console.log('playing')
     const { player } = this.refs;
     const { isPlaying } = this.state;
-    // console.log('playing this', this);
-    // console.log('playing');
-    // console.log('player.paused', player.paused);
-    // console.log('this.state.file', this.state.file);
     if (this.state.file) {
       if (isPlaying) {
-        console.log('playing this2', this);
         this.pause();
-        console.log('playing this 2.5', this);
-        // debugger;
         setTimeout(() => {
           player.play().then((response) => {
-            console.log('playing this3 response', response);
             this.setState({
               isPlaying: true,
             });
@@ -226,6 +252,8 @@ class Player extends React.Component {
         );
       }
 
+    } else {
+      // this.nextSong();
     }
   }
 
@@ -258,7 +286,6 @@ class Player extends React.Component {
     } else {
       this.pause();
     }
-    // console.log(player.paused);
   }
 
   componentDidMount() {
