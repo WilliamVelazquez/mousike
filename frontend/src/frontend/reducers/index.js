@@ -10,6 +10,11 @@ const reducer = (state, action) => {
         ...state,
         products: action.payload,
       };
+    case 'PLAY_SONG':
+      return {
+        ...state,
+        playing: action.payload,
+      };
     default:
       return state;
   }

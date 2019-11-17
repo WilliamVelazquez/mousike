@@ -5,6 +5,7 @@
 /* eslint-disable react/no-string-refs */
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 // import loadFiles from '../files';
 const AudioPlayer = styled.audio``;
 const PlayerWrapper = styled.div`
@@ -109,11 +110,15 @@ function formatTime(s, showHours) {
 }
 
 class Player extends React.Component {
-  constructor() {
+  constructor(props) {
     super();
+    const { playing } = props;
+
+    console.log('playing', playing);
     this.state = {
       file: encodeURI('https://archive.org/download/vs3s02e01/format=VBR+MP3&ignore=x.mp3'),
-      playing: false,
+      isPlaying: false,
+      playing,
       progress: 0.03,
       humanTime: '00:00',
     };
@@ -122,8 +127,29 @@ class Player extends React.Component {
   }
 
   onUpdate() {
-    const { playing } = this.state;
-    if (playing) {
+
+    const { playing, isPlaying } = this.props;
+    // console.log(this.props);
+    const cb = () => {
+      this.play();
+      console.log('isPlaying 1', isPlaying);
+    };
+    if (playing.songNumber &&
+      playing.playlist[(playing.songNumber)].preview !== this.state.file) {
+      this.setState({
+        file: encodeURI(playing.playlist[(playing.songNumber)].preview),
+        // isPlaying: !!playing.playlist[(playing.songNumber)].preview, // isPlaying: playing.playlist[(playing.songNumber)].preview ? true : false,
+      }, cb);
+      // () => {
+      //   const { player } = this.refs;
+      //   if (!player.paused) {
+      //     this.pause(this.play.bind(this));
+      //   }
+      // }
+    }
+
+    // const { isPlaying } = this.state;
+    if (isPlaying) {
       const { player } = this.refs;
       this.setState({
         progress: player.currentTime / player.duration,
@@ -162,23 +188,74 @@ class Player extends React.Component {
     this.setState({ progress });
   }
 
+  play() {
+    const { player } = this.refs;
+    const { isPlaying } = this.state;
+    console.log('playing this', this);
+    console.log('playing');
+    console.log('player.paused', player.paused);
+    console.log('this.state.file', this.state.file);
+    if (this.state.file) {
+      if (isPlaying) {
+        console.log('playing this2', this);
+        this.pause();
+        console.log('playing this 2.5', this);
+        debugger;
+        player.play().then(
+          () => {
+            console.log('playing this3', this);
+
+            this.setState({
+              isPlaying: true,
+            });
+          },
+        ).catch(
+          (err) => {
+            console.log(err);
+          },
+        );
+
+      } else {
+        player.play().then(
+          () => {
+            this.setState({
+              isPlaying: true,
+            });
+          },
+        );
+      }
+
+    }
+  }
+
+  pause(cb) {
+    console.log('pausing');
+    if (this.state.isPlaying) {
+      const { player } = this.refs;
+      player.pause();
+      // .then(
+      //   () => {
+      //     this.setState({
+      //       isPlaying: false,
+      //     }, () => {
+      //       cb && cb();
+      //     });
+      this.setState({
+        isPlaying: false,
+      }, () => {
+        cb && cb();
+      });
+      //   },
+      // );
+    }
+  }
+
   togglePlay() {
     const { player } = this.refs;
     if (player.paused) {
-      player.play();
-      this.setState({
-        playing: true,
-      });
-      // setTimeout(() => {
-      //   const { player } = this.refs;
-      //   player.src = 'https://archive.org/download/20191111_20191111_0757/format=VBR+MP3&ignore=x.mp3';
-      //   player.play();
-      // }, 2000);
+      this.play();
     } else {
-      player.pause();
-      this.setState({
-        playing: false,
-      });
+      this.pause();
     }
     // console.log(player.paused);
   }
@@ -188,7 +265,7 @@ class Player extends React.Component {
   }
 
   render() {
-    const { playing } = this.state;
+    const { isPlaying } = this.state;
     const { file } = this.state;
     const { player } = this.refs;
     const { progress } = this.state;
@@ -204,7 +281,7 @@ class Player extends React.Component {
             <i className="fa fa-chevron-left" aria-hidden="true" />
           </ControlsButton>
           <ControlsButton type="button" onClick={this.togglePlay.bind(this)}>
-            <i className={playing ? 'fa fa-pause' : 'fa fa-play'} aria-hidden="true" />
+            <i className={isPlaying ? 'fa fa-pause' : 'fa fa-play'} aria-hidden="true" />
           </ControlsButton>
           <ControlsButton type="button" onClick={this.nextSongHandler.bind(this)}>
             <i className="fa fa-chevron-right" aria-hidden="true" />
@@ -236,4 +313,13 @@ class Player extends React.Component {
   }
 }
 
-export default Player;
+const mapStateToProps = (state) => {
+  return {
+    playing: state.playing,
+    myList: state.myList,
+    trends: state.trends,
+    originals: state.originals,
+  };
+};
+
+export default connect(mapStateToProps, null)(Player);
