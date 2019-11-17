@@ -21,6 +21,11 @@ const Song = styled.li`
   &:active {
     background: #5d00f5;
   }
+  & a:not([href^="http"]){
+    background:#666;
+    color:#333;
+    cursor:default;
+  }
 `;
 
 const SongLink = styled.a`
@@ -31,6 +36,7 @@ const SongLink = styled.a`
   padding-left: 10px;
   text-decoration: none;
   grid-template-columns: 1fr 80px;
+
 `;
 
 const SongName = styled.div`
@@ -93,7 +99,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 const mapStateToProps = (state) => {
-  console.log('state');
+  // console.log('state');
   // console.log(state);
   return {
     playing: state.playing,

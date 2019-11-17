@@ -114,7 +114,7 @@ class Player extends React.Component {
     super();
     const { playing } = props;
 
-    console.log('playing', playing);
+    // console.log('playing', playing);
     this.state = {
       file: encodeURI('https://archive.org/download/vs3s02e01/format=VBR+MP3&ignore=x.mp3'),
       isPlaying: false,
@@ -127,19 +127,20 @@ class Player extends React.Component {
   }
 
   onUpdate() {
+    const { player } = this.refs;
 
     const { playing, isPlaying } = this.props;
     // console.log(this.props);
     const cb = () => {
       this.play();
-      console.log('isPlaying 1', isPlaying);
+      console.log('isPlaying 1', this);
     };
     if (playing.songNumber &&
       playing.playlist[(playing.songNumber)].preview !== this.state.file) {
       this.setState({
         file: encodeURI(playing.playlist[(playing.songNumber)].preview),
         // isPlaying: !!playing.playlist[(playing.songNumber)].preview, // isPlaying: playing.playlist[(playing.songNumber)].preview ? true : false,
-      }, cb);
+      }, cb.bind(this));
       // () => {
       //   const { player } = this.refs;
       //   if (!player.paused) {
@@ -191,29 +192,29 @@ class Player extends React.Component {
   play() {
     const { player } = this.refs;
     const { isPlaying } = this.state;
-    console.log('playing this', this);
-    console.log('playing');
-    console.log('player.paused', player.paused);
-    console.log('this.state.file', this.state.file);
+    // console.log('playing this', this);
+    // console.log('playing');
+    // console.log('player.paused', player.paused);
+    // console.log('this.state.file', this.state.file);
     if (this.state.file) {
       if (isPlaying) {
         console.log('playing this2', this);
         this.pause();
         console.log('playing this 2.5', this);
-        debugger;
-        player.play().then(
-          () => {
-            console.log('playing this3', this);
-
+        // debugger;
+        setTimeout(() => {
+          player.play().then((response) => {
+            console.log('playing this3 response', response);
             this.setState({
               isPlaying: true,
             });
-          },
-        ).catch(
-          (err) => {
-            console.log(err);
-          },
-        );
+          })
+            .catch(
+              (err) => {
+                console.log(err);
+              },
+            );
+        }, 0);
 
       } else {
         player.play().then(
