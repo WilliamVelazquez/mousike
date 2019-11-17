@@ -1,15 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 import repeat from '../../assets/static/repeat.png';
 import queue from '../../assets/static/Queue.png';
 import fullScreen from '../../assets/static/fullscreen.png';
 import coverImage from '../../assets/img/album-1.jpg';
-import Player from './Player';
+import Player from './Player/Player';
 
 const AudioPlayer = styled.div`
   background-color: #262930;
   display: grid;
-  grid-template-columns: 100px 1fr 100px;
+  grid-template-columns: 200px 1fr ;
   justify-content: space-evenly; //alineado horizontal
   align-content: space-around; //alineado vertical
   justify-items: center; //horizontal
@@ -54,21 +55,46 @@ const PlayingSong = styled.div`
 //   width: '11px',
 //   height: '11px',
 // };
-export const MusicPlayer = () => {
+const MusicPlayer = (props) => {
   // eslint-disable-line import/prefer-default-export
+  // console.log('props', props);
+  // const { playing } = props.state;
+  // console.log('playing', playing);
+  let
+    artist,
+    name,
+    imageUrl = '';
+
+  if (props.playing.songNumber) {
+    const { playing } = props;
+    const song = playing.playlist[playing.songNumber];
+    const { images } = song;
+    imageUrl = images[0].url;
+    console.log('props.playing.songNumber', props.playing.songNumber);
+    console.log('song', song);
+    name = song.name;
+    artist = song.artist;
+    const hello = 'world';
+    // song = playing.playlist[playing.songNumber];
+    // name = song.name;
+    // name = song.name;
+  }
+  // const song = playing.playlist[playing.songNumber];
+  // const { preview, name, album, images, artist } = song;
   return (
     <>
       <nav>
         <AudioPlayer>
           <SongPlaying>
-            <CoverImage src={coverImage} alt="" srcSet="" />
+            <CoverImage src={imageUrl} alt="" srcSet="" />
             <div className="PlayingInfo">
-              <PlayingArtist>The who</PlayingArtist>
-              <PlayingSong>Im free - Live</PlayingSong>
+              <PlayingArtist>{artist}</PlayingArtist>
+              <PlayingSong>{name}</PlayingSong>
+              {/* <div>{hello}</div> */}
             </div>
           </SongPlaying>
           <Player />
-          <ExtraActions>
+          {/* <ExtraActions>
             <div className="prev-song">
               <img src={repeat} alt="" srcSet="" />
             </div>
@@ -78,11 +104,20 @@ export const MusicPlayer = () => {
             <div className="next-song">
               <img src={fullScreen} alt="" srcSet="" />
             </div>
-          </ExtraActions>
+          </ExtraActions> */}
         </AudioPlayer>
       </nav>
     </>
   );
 };
 
-export default MusicPlayer;
+const mapStateToProps = (state) => {
+  return {
+    playing: state.playing,
+    myList: state.myList,
+    trends: state.trends,
+    originals: state.originals,
+  };
+};
+
+export default connect(mapStateToProps, null)(MusicPlayer);

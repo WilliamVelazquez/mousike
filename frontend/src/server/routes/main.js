@@ -55,7 +55,7 @@ const main = async (req, res, next) => {
         },
         myList: [],
         trends: songsList,
-        originals: [],
+        originals: songsList.filter(song => song.preview),
       };
     } catch (error) {
       initialState = {
@@ -66,6 +66,7 @@ const main = async (req, res, next) => {
         originals: [],
       };
       console.log(error);
+      // console.log('Initial State', initialState);
     }
 
     console.log('initialState.user.id', initialState.user.id);

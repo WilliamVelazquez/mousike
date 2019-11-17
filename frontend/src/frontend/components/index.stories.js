@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, text, boolean, color } from '@storybook/addon-knobs';
 
-import { MusicPlayer } from './MusicPlayer/MusicPlayer';
+import MusicPlayer from './MusicPlayer/MusicPlayer';
 // Song Elements
 import SongList from './SongElements/SongList';
 import SongElement from './SongElements/SongElement';
