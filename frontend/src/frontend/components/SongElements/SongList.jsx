@@ -10,6 +10,9 @@ import SongElement from './SongElement';
 const SongListStyle = styled.ol`
   margin: 0;
   padding-inline-start: 0;
+  float:left;
+  width:100%;
+  background:#333;
 `;
 
 // eslint-disable-next-line import/prefer-default-export

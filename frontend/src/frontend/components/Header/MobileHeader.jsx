@@ -10,7 +10,7 @@ const MobileHeaderWrapper = styled.div`
   background: ${props => props.theme.background};
 
   /* background:#262930; */
-  margin-bottom: 24px;
+  /* margin-bottom: 24px; */
   display: grid;
   grid-template-columns: 74px 1fr 74px;
   grid-gap: 10px;

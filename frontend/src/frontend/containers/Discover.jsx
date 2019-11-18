@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 import SongList from '../components/SongElements/SongList';
 
 // import TabsHeader from '../components/TabsHeader';
@@ -9,9 +10,26 @@ import songs from '../utils/mocks/songs';
 import { GlobalStyle } from '../GlobalStyles';
 import MobileHeader from '../components/Header/MobileHeader';
 import SessionBar from '../components/Header/SesionBar';
+import Playlist from '../components/Playlist';
 // import FullMusicPlayer from '../components/FullMusicPlayer/FullMusicPlayer';
 
 const Discover = (props) => {
+  const PlaylistWrapper = styled.article`
+    padding:0 50px;
+    /* display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: 1fr 1fr 1fr; */
+  `;
+  const PlaylistTitle = styled.p`
+    font-size:14px;
+    font-weight:bold;
+  `;
+  const BigHeader = styled.h1`
+    font-size:3em;
+    padding:30px 0;
+  `;
+
   const {
     playing,
     myList,
@@ -28,28 +46,25 @@ const Discover = (props) => {
         {/* <TabsHeader /> */}
         <GlobalStyle />
         <MobileHeader title="DISCOVER" />
-        {
-          Object.entries(artists).map(
-            (artist) => {
-              const albumImage = artist[1][0].images[1].url;
-              const artistName = artist[1][0].artist;
-              console.log(albumImage);
-              console.log(artistName);
-              // return <img src={albumImage} alt={artistName} />;
-            },
-          )
-
-          // Object.keys(artists).map((key) => {
-          //   console.log('key', key);
-          //   // console.log('index', index);
-          //   console.log(artists[key]);
-          //   return artists[key];
-          // })
-
-          // artists.map((artist) => {
-          //   return <div>Hello world</div>;
-          // })
-        }
+        <PlaylistWrapper>
+          <BigHeader>Descubre</BigHeader>
+          <p>Artistas</p>
+          {
+            Object.entries(artists).map(
+              (artist, i) => {
+                const albumImage = artist[1][0].images[1].url;
+                const artistName = artist[1][0].artist;
+                console.log(albumImage);
+                console.log(artistName);
+                if (i < 9) {
+                  return (
+                    <Playlist src={albumImage} name={artistName} />
+                  );
+                }
+              },
+            )
+          }
+        </PlaylistWrapper>
         {/* {artists.map((artist)) => <div>hey</div>)} */}
         {
           // artists ?

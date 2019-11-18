@@ -12,7 +12,7 @@ const BackgroundBox = styled.div`
   padding: 40px;
   min-width: 400px;
   border-radius: 20px;
-  background-color: #333333;
+  background-color: black;
 `;
 const SocialMediaButtonsBox = styled.div`
   display: grid;

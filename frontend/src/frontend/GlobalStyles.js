@@ -30,7 +30,7 @@ export const GlobalStyleStoryBook = createGlobalStyle`
   }
 
   body {
-    background: #333333;
+    background: black;
     height: 100vh;
     width: 100%;
     margin: 0 auto;
@@ -61,7 +61,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background: #333333;
+    background: black;
     /* height: 100vh; */
     width: 100%;
     margin: 0;
