@@ -20,11 +20,11 @@ const SongList = ({
   trends,
   originals }) => {
 
-  console.log(songs);
-  console.log(playing);
-  console.log(myList);
-  console.log(trends);
-  console.log(originals);
+  // console.log(songs);
+  // console.log(playing);
+  // console.log(myList);
+  // console.log(trends);
+  // console.log(originals);
   return (
     <SongListStyle>
       {trends &&
@@ -48,8 +48,8 @@ const SongList = ({
 };
 
 const mapStateToProps = (state) => {
-  console.log('state');
-  console.log(state);
+  // console.log('state');
+  // console.log(state);
   return {
     playing: state.playing,
     myList: state.myList,

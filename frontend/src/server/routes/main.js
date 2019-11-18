@@ -23,6 +23,20 @@ console.log('main.js');
 // };
 // apiKeyToken: config.apiKeyToken
 let initialState;
+
+const groupBy = key => array => array.reduce(
+  (objectsByKeyValue, obj) => ({
+    ...objectsByKeyValue,
+    [obj[key]]: (objectsByKeyValue[obj[key]] || []).concat(obj),
+  }),
+  {},
+);
+
+// example usage
+
+// console.log('Dog', grouped.get('Dog')); // -> [{type:"Dog", name:"Spot"}, {type:"Dog", name:"Rover"}]
+// console.log(grouped.get('Cat')); // -> [{type:"Cat", name:"Tiger"}, {type:"Cat", name:"Leo"}]
+
 const main = async (req, res, next) => {
   try {
     try {
@@ -46,6 +60,36 @@ const main = async (req, res, next) => {
       // console.log(songsList);
 
       console.log('helloworld');
+
+      // let grouped = [];
+      // grouped = groupBy(songsList, song => song.artist);
+      // grouped.get('La Adictiva Banda San José de Mesillas');
+      // const titles = [];
+      // songsList.map((song) => {
+      //   titles.push(song.artist);
+      // });
+      // const groupedTitles = groupBy(titles, (title) => {
+      //   // console.log('title', title);
+      //   return title;
+      // });
+
+      // console.log('titles', titles);
+      // console.log('groupedTitles', groupedTitles);
+
+      const cars = [
+        { brand: 'Audi', color: 'black' },
+        { brand: 'Audi', color: 'white' },
+        { brand: 'Ferarri', color: 'red' },
+        { brand: 'Ford', color: 'white' },
+        { brand: 'Peugot', color: 'white' },
+      ];
+
+      const groupByBrand = groupBy('brand');
+      const groupByArtist = groupBy('artist');
+
+      const groupedByBrand = groupByBrand(cars);
+      const groupedByArtist = groupByArtist(songsList);
+
       initialState = {
         user,
         playing: {
@@ -56,7 +100,14 @@ const main = async (req, res, next) => {
         myList: [],
         trends: songsList,
         originals: songsList.filter(song => song.preview),
+        artists:{
+          ...groupedByArtist
+        },
+        // grouped: [grouped.get('La Adictiva Banda San José de Mesillas')],
+        // titles,
+        // groupedTitles,
       };
+
     } catch (error) {
       initialState = {
         user: {},
@@ -64,9 +115,11 @@ const main = async (req, res, next) => {
         myList: [],
         trends: {},
         originals: [],
+        grouped: [],
       };
       console.log(error);
-      // console.log('Initial State', initialState);
+      console.log('Initial State', initialState);
+
     }
 
     console.log('initialState.user.id', initialState.user.id);

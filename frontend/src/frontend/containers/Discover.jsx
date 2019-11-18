@@ -11,22 +11,53 @@ import MobileHeader from '../components/Header/MobileHeader';
 import SessionBar from '../components/Header/SesionBar';
 // import FullMusicPlayer from '../components/FullMusicPlayer/FullMusicPlayer';
 
-const Discover = ({
-  playing,
-  myList,
-  trends,
-  originals }) => {
-  console.log(playing);
-  console.log(myList);
-  console.log(trends);
-  console.log(originals);
+const Discover = (props) => {
+  const {
+    playing,
+    myList,
+    trends,
+    originals,
+    artists } = props;
+  // console.log(playing);
+  // console.log(myList);
+  // console.log(trends);
+  // console.log(originals);
   return (
     <>
       <div className="tabs">
         {/* <TabsHeader /> */}
         <GlobalStyle />
         <MobileHeader title="DISCOVER" />
+        {
+          Object.entries(artists).map(
+            (artist) => {
+              const albumImage = artist[1][0].images[1].url;
+              const artistName = artist[1][0].artist;
+              console.log(albumImage);
+              console.log(artistName);
+              // return <img src={albumImage} alt={artistName} />;
+            },
+          )
 
+          // Object.keys(artists).map((key) => {
+          //   console.log('key', key);
+          //   // console.log('index', index);
+          //   console.log(artists[key]);
+          //   return artists[key];
+          // })
+
+          // artists.map((artist) => {
+          //   return <div>Hello world</div>;
+          // })
+        }
+        {/* {artists.map((artist)) => <div>hey</div>)} */}
+        {
+          // artists ?
+          //   <></>
+          // artists.map((item, key) => <div item={item} key={item} />) :
+          // ''
+
+        }
         <SongList songs={songs} onChange="" />
         {/* <FullMusicPlayer /> */}
         <MusicPlayer />
@@ -41,6 +72,7 @@ const mapStateToProps = (state) => {
     myList: state.myList,
     trends: state.trends,
     originals: state.originals,
+    artists: state.artists,
   };
 };
 

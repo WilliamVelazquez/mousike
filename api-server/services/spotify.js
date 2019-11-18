@@ -71,13 +71,13 @@ class SpotifyService {
       }
         return {
           _id:item.track.href,
+          artist: artists,
           name: item.track.name,
           preview: item.track.preview_url,
           images:item.track.album.images,
           album:item.track.album.name,
           durationMs:SONG_PREVIEW_TIME,
           durationStr:getStringFromMs(SONG_PREVIEW_TIME),
-          artist: artists
         };
             
     })
