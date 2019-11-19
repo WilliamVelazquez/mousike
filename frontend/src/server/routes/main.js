@@ -11,17 +11,11 @@ import Layout from '../../frontend/components/Layout';
 import reducer from '../../frontend/reducers';
 import render from '../render';
 
+require('@babel/polyfill');
 require('dotenv').config();
 
 console.log('main.js');
 
-// import initialState from '../../frontend/initialState';
-
-// const initialState = {
-//   cart: [],
-//   products: [],
-// };
-// apiKeyToken: config.apiKeyToken
 let initialState;
 
 const groupBy = key => array => array.reduce(
@@ -31,11 +25,6 @@ const groupBy = key => array => array.reduce(
   }),
   {},
 );
-
-// example usage
-
-// console.log('Dog', grouped.get('Dog')); // -> [{type:"Dog", name:"Spot"}, {type:"Dog", name:"Rover"}]
-// console.log(grouped.get('Cat')); // -> [{type:"Cat", name:"Tiger"}, {type:"Cat", name:"Leo"}]
 
 const main = async (req, res, next) => {
   try {
@@ -61,33 +50,7 @@ const main = async (req, res, next) => {
 
       console.log('helloworld');
 
-      // let grouped = [];
-      // grouped = groupBy(songsList, song => song.artist);
-      // grouped.get('La Adictiva Banda San José de Mesillas');
-      // const titles = [];
-      // songsList.map((song) => {
-      //   titles.push(song.artist);
-      // });
-      // const groupedTitles = groupBy(titles, (title) => {
-      //   // console.log('title', title);
-      //   return title;
-      // });
-
-      // console.log('titles', titles);
-      // console.log('groupedTitles', groupedTitles);
-
-      const cars = [
-        { brand: 'Audi', color: 'black' },
-        { brand: 'Audi', color: 'white' },
-        { brand: 'Ferarri', color: 'red' },
-        { brand: 'Ford', color: 'white' },
-        { brand: 'Peugot', color: 'white' },
-      ];
-
-      const groupByBrand = groupBy('brand');
       const groupByArtist = groupBy('artist');
-
-      const groupedByBrand = groupByBrand(cars);
       const groupedByArtist = groupByArtist(songsList);
 
       initialState = {
@@ -100,8 +63,8 @@ const main = async (req, res, next) => {
         myList: [],
         trends: songsList,
         originals: songsList.filter(song => song.preview),
-        artists:{
-          ...groupedByArtist
+        artists: {
+          ...groupedByArtist,
         },
         // grouped: [grouped.get('La Adictiva Banda San José de Mesillas')],
         // titles,
