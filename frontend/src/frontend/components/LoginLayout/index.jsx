@@ -30,10 +30,12 @@ const SignUpBox = styled.div`
   text-align: center;
 `;
 
-const LoginLayout = () => {
+const LoginLayout = (props) => {
+  const { children } = props;
   return (
     <Layout>
       <BackgroundBox>
+        { children }
         <SocialMediaButtonsBox>
           <SocialMediaLoginButton text="Login with Google" background="#ffffff" textColor="#262930">
             <GoogleIcon
