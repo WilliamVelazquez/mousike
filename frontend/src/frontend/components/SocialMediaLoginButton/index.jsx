@@ -22,7 +22,7 @@ SocialMediaButton.defaultProps = {
 };
 
 const SocialMediaLoginButton = (props) => {
-  const { textColor, background, textSize, textWeight, text, handleClick } = props;
+  const { textColor, background, textSize, textWeight, text, handleClick, children } = props;
   return (
     <SocialMediaButton
       textColor={textColor}
@@ -31,7 +31,8 @@ const SocialMediaLoginButton = (props) => {
       textWeight={textWeight}
       onClick={handleClick}
     >
-      {text}
+      {`${text}  `}
+      {children}
     </SocialMediaButton>
   );
 };
