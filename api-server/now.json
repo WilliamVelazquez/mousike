@@ -1,12 +1,22 @@
 {
-  "name": "platzivideo",
+  "name": "mousike_api",
   "version": 2,
   "builds": [{ "src": "index.js", "use": "@now/node" }],
   "routes": [{ "src": "/(.*)", "dest": "/index.js" }],
   "env": {
-    "DB_USER": "@platzivideos-db-user",
-    "DB_PASSWORD": "@platzivideos-db-password",
-    "DB_HOST": "@platzivideos-db-host",
-    "DB_NAME": "@platzivideos-db-name"
+    "DB_USER": "@mousike_api_db_user",
+    "DB_PASSWORD": "@mousike_api_db_password",
+    "DB_HOST": "@mousike_api_db_host",
+    "DB_NAME": "@mousike_api_db_name",
+    "DB_PORT": "@mousike_api_db_port",
+    "DEFAULT_ADMIN_PASSWORD": "@mousike_api_default_admin_password",
+    "DEFAULT_USER_PASSWORD": "@mousike_api_default_user_password",
+    "AUTH_JWT_SECRET": "@mousike_api_auth_jwt_secret",
+    "PUBLIC_API_KEY_TOKEN": "@mousike_api_public_api_key_token",
+    "ADMIN_API_KEY_TOKEN": "@mousike_api_admin_api_key_token",
+    "SPOTIFY_CLIENT_ID": "@mousike_api_spotify_client_id",
+    "SPOTIFY_CLIENT_SECRET": "@mousike_api_spotify_client_secret",
+    "GOOGLE_CLIENT_ID": "@mousike_api_google_client_id",
+    "GOOGLE_CLIENT_SECRET": "@mousike_api_google_client_secret"
   }
 }

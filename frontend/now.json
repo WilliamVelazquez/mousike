@@ -1,0 +1,10 @@
+{
+  "name": "mousike_app",
+  "version": 2,
+  "builds": [{ "src": "src/server/index.js", "use": "@now/node" }],
+  "routes": [{ "src": "/(.*)", "dest": "src/server/index.js" }],
+  "env": {
+    "API_URL": "@mousike_app_api_url",
+    "API_KEY_TOKEN": "@mousike_app_api_key_token"
+  }
+}
