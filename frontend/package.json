@@ -98,11 +98,6 @@
     "webpack-dev-server": "3.9.0",
     "webpack-hot-middleware": "2.25.0"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "*.{js,jsx}": [
       "npm run format",
