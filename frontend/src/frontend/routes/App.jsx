@@ -13,12 +13,11 @@ import NotFound from '../containers/NotFound';
 import Discover from '../containers/Discover';
 import FullMusicPlayer from '../components/experiments/FullMusicPlayer/FullMusicPlayer';
 import Register from '../containers/Register';
-import Login from '../containers/Login';
+import Login from '../containers/Login3';
 import Hamburger from '../components/experiments/HamburgerMenu/Hamburger';
-import LoginLayout from '../components/LoginLayout';
 
 const App = ({ isLogged }) => {
-  console.log('ratata islogged', isLogged);
+  // console.log('ratata islogged', isLogged);
   const history = createBrowserHistory();
   return (
     <Router history={history}>

@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import GoogleIcon from '../Icons/GoogleIcon';
 import TwitterIcon from '../Icons/TwitterIcon';
 import FacebookIcon from '../Icons/FacebookIcon';
+import HorizontalSeparator from '../HorizontalSeparator';
 import SocialMediaLoginButton from '../SocialMediaLoginButton';
 
 const Layout = styled.div`
@@ -18,16 +20,22 @@ const BackgroundBox = styled.div`
   border-radius: 20px;
   background-color: #333333;
 `;
+
 const SocialMediaButtonsBox = styled.div`
   display: grid;
-  grid-row-gap: 40px;
+  grid-row-gap: 20px;
   text-align: center;
-  margin-bottom: 80px;
 `;
 
 const SignUpBox = styled.div`
   display: grid;
   text-align: center;
+  margin-bottom: 20px;
+`;
+
+const TitleText = styled.h2`
+  text-align: center;
+  margin-bottom: 10px;
 `;
 
 const LoginLayout = (props) => {
@@ -36,7 +44,24 @@ const LoginLayout = (props) => {
     <Layout>
       <BackgroundBox>
         { children }
+
+        <TitleText>Don´t have an account?</TitleText>
+        <SignUpBox>
+          <Link to="/register">
+            <SocialMediaLoginButton text="Sign up!" textColor="#262930" />
+          </Link>
+        </SignUpBox>
+
+        <HorizontalSeparator barColor="#FFFFFF" text="OR" />
+
         <SocialMediaButtonsBox>
+          <SocialMediaLoginButton text="Login with Facebook" background="#395697">
+            <FacebookIcon
+              size={18}
+              color="#fff"
+              hoverColor="#052A4F"
+            />
+          </SocialMediaLoginButton>
           <SocialMediaLoginButton text="Login with Google" background="#ffffff" textColor="#262930">
             <GoogleIcon
               size={18}
@@ -51,17 +76,7 @@ const LoginLayout = (props) => {
               hoverColor="#052A4F"
             />
           </SocialMediaLoginButton>
-          <SocialMediaLoginButton text="Login with Facebook" background="#395697">
-            <FacebookIcon
-              size={18}
-              color="#fff"
-              hoverColor="#052A4F"
-            />
-          </SocialMediaLoginButton>
         </SocialMediaButtonsBox>
-        <SignUpBox>
-          <SocialMediaLoginButton text="Sign up!" textColor="#262930" />
-        </SignUpBox>
       </BackgroundBox>
     </Layout>
   );
