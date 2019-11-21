@@ -7,9 +7,14 @@ const render = (html, preloadedState, styles) => {
   console.log('render/index - rendered');
   const result = `
   <!DOCTYPE html>
-    <html>
+    <html lang="en">
       <head>
-        <title>Platzi Store</title>
+        <meta charset="UTF-8" />
+        <title>Mousike</title>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Mousike!🎵🎶 🎤Listen what you love 💚 when you want! 🎙✨">
+        <meta name="theme-color" content="#26FFAB" />
         <link rel="stylesheet" href="assets/app.css" type="text/css"></link>
         ${styles}        
         <script src="https://kit.fontawesome.com/473d269aa9.js"></script>
