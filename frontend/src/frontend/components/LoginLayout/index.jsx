@@ -16,9 +16,15 @@ const Layout = styled.div`
 
 const BackgroundBox = styled.div`
   padding: 40px;
-  min-width: 400px;
+  min-width: 500px;
   border-radius: 20px;
   background-color: #333333;
+  @media (max-width: 768px) {
+    min-width: 0px;
+  }
+  @media (max-width: 320px) {
+    border-radius: 0px;
+  }
 `;
 
 const SocialMediaButtonsBox = styled.div`

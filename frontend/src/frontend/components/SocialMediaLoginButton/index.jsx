@@ -10,6 +10,10 @@ const SocialMediaButton = styled.button`
   background-color: ${props => props.background};
   font-size: ${props => props.textSize || '16px'};
   font-weight: ${props => props.textWeight || 'bold'};
+  @media (max-width: 480px) {
+    font-size: 14px;
+    padding: 12px 40px;
+  }
   &:hover{
     /* background: #fff;
     transition: background 0.2s ease-out;

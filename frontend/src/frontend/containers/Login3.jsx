@@ -9,14 +9,29 @@ import { GlobalStyle } from '../GlobalStyles';
 
 const LoginRememberMe = styled.div`
   /* color: #616467; */
-  color: #FFFFFF;
-  display: flex;
+  color: #26FFAB;
+  display: grid;
+  align-items: baseline;
+  grid-auto-flow: column;
   justify-content: space-between;
   margin-top: 10px;
+  @media (max-width: 480px) {
+    grid-gap: 10px;
+    grid-auto-flow: row;
+  }
+  & > label {
+    font-size: 14px;
+    @media (max-width: 480px) {
+      font-size: 12px;
+    }
+  }
   & > a {
-    color: #FFFFFF;
+    color: #26FFAB;
     font-size: 14px;
     text-decoration: none;
+    @media (max-width: 480px) {
+      font-size: 12px;
+    }
   }
   & > a:hover{
     text-decoration: underline;
@@ -31,7 +46,7 @@ const LoginForm = styled.form`
 
 const InputContainer = styled.p`
   position: relative;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 `;
 
 const LoginInputLabel = styled.label`
@@ -39,6 +54,9 @@ const LoginInputLabel = styled.label`
   padding: 5px 0px;
   font-weight: bold;
   display: inline-block;
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
 `;
 
 const LoginInput = styled.input`
@@ -52,35 +70,37 @@ const LoginInput = styled.input`
   border-radius: 5px;
   box-sizing: border-box;
   border: 1px solid #dbdbdb;
+  @media (max-width: 480px) {
+    font-size: 12px;
+    padding: 8px 8px;
+  }
   & :focus{
     background: #fff
   }
 `;
 const LoginButton = styled.button`
-  height:48px;
-  width:450px;
   color:#616467;
   display:block;
   cursor:pointer;
   font-size:14px;
-  min-width:160px;
   font-weight:700;
+  margin-top:15px;
   user-select:none;
   line-height:14px;
   margin-bottom:0px;
   text-align:center;
   letter-spacing:2px;
   border-radius:500px;
-  padding-top:16px;
-  padding-left:48px;
-  padding-right:48px;
-  padding-bottom:18px;
+  padding: 18px 48px;
   box-sizing:border-box;
   background-color:white;
   border: 1px #ccc solid;
   text-transform:uppercase;
   box-shadow:#616467 0px 0px 0px 2px inset;
-
+  @media (max-width: 480px) {
+    font-size: 12px;
+    padding: 12px 48px;
+  }
   :hover{
     color: #fff;
     background-color: #616467;
