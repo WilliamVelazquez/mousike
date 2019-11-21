@@ -48,7 +48,7 @@ const main = async (req, res, next) => {
 
       // console.log(songsList);
 
-      console.log('helloworld');
+      // console.log('helloworld');
 
       const groupByArtist = groupBy('artist');
       const groupedByArtist = groupByArtist(songsList);
