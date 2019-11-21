@@ -2,9 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 const SocialMediaButton = styled.button`
+  width: 100%;
   cursor: pointer;
-  padding: 20px 40px;
-  border-radius: 5px;
+  padding: 15px 40px;
+  border-radius: 30px;
   color: ${props => props.textColor || '#ffffff'};
   background-color: ${props => props.background};
   font-size: ${props => props.textSize || '16px'};
