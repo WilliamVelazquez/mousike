@@ -9,19 +9,26 @@ import userIcon from '../../assets/static/user-icon.png';
 
 const HeaderMenu = styled.menu`
   &:hover ul, &ul:hover{
-      display:block
+    display:block
   }
-  float:left;
+  /* float:left; */
   padding:0;
+  justify-self: flex-end;
 `;
 const HeaderUl = styled.ul`
   display: none;
   list-style: none;
-  padding: 0px;
+  /* padding: 0px; */
   /* position: absolute; */
   /* width: 100px; */
-  text-align: left;
+  /* text-align: left; */
   position: absolute;
+  right: 0;
+  text-align: right;
+  padding: 5px 15px;
+  margin-right: 2px;
+  border-radius: 6px;
+  background-color: #262930;
   &:hover{
     display: block;
   }

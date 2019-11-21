@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import logo from '../../assets/static/logo-top-bar-mobile.png';
 import ProfileMenu from './ProfileMenu';
 
@@ -34,6 +35,7 @@ const LogoImg = styled.img`
 `;
 const Title = styled.h2`
   text-align: center;
+  align-self: center;
 `;
 
 const MobileHeader = (props) => {
@@ -46,7 +48,9 @@ const MobileHeader = (props) => {
     <div>
       <MobileHeaderWrapper>
         <IconWrapper>
-          <LogoImg src={logo} alt="" />
+          <Link to="/">
+            <LogoImg src={logo} alt="" />
+          </Link>
         </IconWrapper>
         <Title>{title || 'DISCOVER'}</Title>
         <ProfileMenu />
