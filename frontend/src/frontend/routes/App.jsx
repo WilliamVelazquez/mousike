@@ -12,7 +12,7 @@ import { createBrowserHistory } from 'history';
 import NotFound from '../containers/NotFound';
 import Discover from '../containers/Discover';
 import FullMusicPlayer from '../components/experiments/FullMusicPlayer/FullMusicPlayer';
-import Register from '../containers/Register';
+import Register from '../containers/Register3';
 import Login from '../containers/Login3';
 import Hamburger from '../components/experiments/HamburgerMenu/Hamburger';
 
