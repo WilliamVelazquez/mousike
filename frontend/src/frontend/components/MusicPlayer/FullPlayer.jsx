@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Player from './Player/Player';
 import { GlobalStyle } from '../../GlobalStyles';
 
@@ -80,7 +82,13 @@ const Info = styled.div`
 `;
 
 const FullPlayer = (props) => {
-  const { song } = props;
+  const { playing } = props;
+  let song;
+  playing.songNumber ? song = playing.playlist[playing.songNumber] : song = props.song;
+
+  //   const { song } = props;
+  const { name, artist } = song;
+  const { url } = song.images[0];
   console.log(song);
   //   const { prevHandler, nextHandler, togglePlayHandler, song, img } = props;
   //   const { name, artist } = song;
@@ -93,7 +101,8 @@ const FullPlayer = (props) => {
       <Container className="container">
         <PlayerWrapper className="player">
           <div className="front">
-            <FrontArt className="art" alt="art" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/345377/thousand-thursday%402x.jpg" />
+            {/* <FrontArt className="art" alt="art" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/345377/thousand-thursday%402x.jpg" /> */}
+            <FrontArt className="art" alt="art" src={url} />
             <Player />
             <div className="meta">
               <ControlsTop className="controls top">
@@ -108,8 +117,8 @@ const FullPlayer = (props) => {
                 </ControlsButton>
               </ControlsTop>
               <Info className="info">
-                {/* <h1>{name}</h1>
-                <h2>{artist}</h2> */}
+                <h1>{name}</h1>
+                <h2>{artist}</h2>
               </Info>
 
             </div>
@@ -120,4 +129,12 @@ const FullPlayer = (props) => {
   );
 };
 
-export default FullPlayer;
+const mapStateToProps = (state) => {
+  return {
+    playing: state.playing,
+    trends: state.trends,
+  };
+};
+
+export default connect(mapStateToProps, null)(FullPlayer);
+

@@ -68,10 +68,12 @@ export const loginUser = ({ email, password }, redirectUrl) => {
         document.cookie = `email=${data.user.email}`;
         document.cookie = `name=${data.user.name}`;
         document.cookie = `id=${data.user.id}`;
+        console.log('registeredData', JSON.stringify(data));
+        debugger;
         dispatch(loginRequest(data));
       })
       .then(() => {
-        window.location.href = redirectUrl;
+        // window.location.href = redirectUrl;
       })
       .catch(err => dispatch(setError(err)));
   };

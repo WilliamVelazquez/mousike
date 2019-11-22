@@ -60,7 +60,16 @@ PlayingSong.defaultProps = {
 };
 
 const AnimatedEllipsisText = (props) => {
-  const { maxWidth, textColor, backgroundColor, textSize, textResponsiveSize, animationTime, textWeight, text } = props;
+  const {
+    maxWidth,
+    textColor,
+    backgroundColor,
+    textSize,
+    textResponsiveSize,
+    animationTime,
+    textWeight,
+    text,
+  } = props;
   return (
     <SongDataBox textColor={textColor} backgroundColor={backgroundColor}>
       <SongDataWrapper maxWidth={maxWidth}>
