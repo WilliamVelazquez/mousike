@@ -22,8 +22,8 @@ const HeaderUl = styled.ul`
   /* position: absolute; */
   /* width: 100px; */
   /* text-align: left; */
-  position: absolute;
   right: 0;
+  position: absolute;
   text-align: right;
   padding: 5px 15px;
   margin-right: 2px;
@@ -44,14 +44,14 @@ const HeaderUl = styled.ul`
   }
 `;
 const HeaderMenuProfile = styled.div`
-  align-items: center;
   display: flex;
   cursor: pointer;
+  align-items: center;
   & img {
-    margin-right: 8px;
     width: 40px;
-    border-radius: 100%;
     object-fit: cover;    
+    margin-right: 8px;
+    border-radius: 100%;
   }
 `;
 
@@ -83,8 +83,8 @@ const Header = (props) => {
             <li><a href="/">{user.name}</a></li> : null
           }
           {hasUser ?
-            <li><a href="#logout" onClick={handleLogout}>Cerrar Sesión</a></li> :
-            <li><Link to="/login">Iniciar sesión</Link></li>
+            <li><a href="#logout" onClick={handleLogout}>Log out</a></li> :
+            <li><Link to="/login">Log in</Link></li>
           }
         </HeaderUl>
       </HeaderMenu>
