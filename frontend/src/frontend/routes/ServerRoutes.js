@@ -2,10 +2,10 @@
 import NotFound from '../containers/NotFound';
 import Discover from '../containers/Discover';
 import FullMusicPlayer from '../components/experiments/FullMusicPlayer/FullMusicPlayer';
-import Register from '../containers/Register';
-import Login from '../containers/Login';
+import Register from '../containers/Register3';
+import Login from '../containers/Login3';
 import LoginLayout from '../components/LoginLayout';
-import Hamburger from '../components/experiments/HamburgerMenu/Hamburger';
+// import Hamburger from '../components/experiments/HamburgerMenu/Hamburger';
 
 const serverRoutes = (isLogged) => {
   console.log(isLogged);

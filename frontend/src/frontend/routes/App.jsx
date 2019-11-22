@@ -14,7 +14,7 @@ import Discover from '../containers/Discover';
 import FullMusicPlayer from '../components/experiments/FullMusicPlayer/FullMusicPlayer';
 import Register from '../containers/Register3';
 import Login from '../containers/Login3';
-import Hamburger from '../components/experiments/HamburgerMenu/Hamburger';
+// import Hamburger from '../components/experiments/HamburgerMenu/Hamburger';
 
 const App = ({ isLogged }) => {
   // console.log('ratata islogged', isLogged);
@@ -30,7 +30,7 @@ const App = ({ isLogged }) => {
         {/* <Route exact path="/login2" component={LoginLayout} /> */}
         <Route exact path="/discover" component={isLogged ? Discover : Login} />
         <Route exact path="/player" component={FullMusicPlayer} />
-        <Route exact path="/hamburger" component={Hamburger} />
+        {/* <Route exact path="/hamburger" component={Hamburger} /> */}
         <Route component={NotFound} />
       </Switch>
       {/* </Layout> */}
