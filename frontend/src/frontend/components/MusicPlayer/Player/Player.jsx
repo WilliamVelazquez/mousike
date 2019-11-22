@@ -266,7 +266,7 @@ class Player extends React.Component {
         <Time className="time">
           {humanTime}
         </Time>
-        <AudioPlayer ref="player">
+        <AudioPlayer ref="player" id="player">
           <source src={file} />
           <track
             default
