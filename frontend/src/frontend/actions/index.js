@@ -34,6 +34,10 @@ export const getVideoSource = payload => ({
   type: 'GET_VIDEO_SOURCE',
   payload,
 });
+export const registerPlayingSong = payload => ({
+  type: 'REGISTER_PLAYING_SONG',
+  payload,
+});
 
 export { addToCart, loadProducts };
 
@@ -59,6 +63,7 @@ export const loginUser = ({ email, password }, redirectUrl) => {
       },
     })
       .then(({ data }) => {
+        console.log('the data -> ', data);
         // console.log(data);
         document.cookie = `email=${data.user.email}`;
         document.cookie = `name=${data.user.name}`;

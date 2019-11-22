@@ -14,6 +14,7 @@ import Discover from '../containers/Discover';
 import FullMusicPlayer from '../components/experiments/FullMusicPlayer/FullMusicPlayer';
 import Register from '../containers/Register3';
 import Login from '../containers/Login3';
+import MobilePlayer from '../containers/MobilePlayer';
 // import Hamburger from '../components/experiments/HamburgerMenu/Hamburger';
 
 const App = ({ isLogged }) => {
@@ -30,6 +31,7 @@ const App = ({ isLogged }) => {
         {/* <Route exact path="/login2" component={LoginLayout} /> */}
         <Route exact path="/discover" component={isLogged ? Discover : Login} />
         <Route exact path="/player" component={FullMusicPlayer} />
+        <Route exact path="/fullPlayer" component={MobilePlayer} />
         {/* <Route exact path="/hamburger" component={Hamburger} /> */}
         <Route component={NotFound} />
       </Switch>
