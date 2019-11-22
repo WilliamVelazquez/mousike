@@ -6,6 +6,7 @@ import queue from '../../assets/static/Queue.png';
 import fullScreen from '../../assets/static/fullscreen.png';
 import coverImage from '../../assets/img/album-1.jpg';
 import Player from './Player/Player';
+import AnimatedEllipsisText from './AnimatedEllipsisText';
 
 const AudioPlayer = styled.div`
   background-color: #262930;
@@ -15,15 +16,23 @@ const AudioPlayer = styled.div`
   align-content: space-around; //alineado vertical
   justify-items: center; //horizontal
   grid-gap: 10px;
-  padding: 20px;
+  padding: 4px 20px;
   position: fixed;
   bottom: 0;
   width: 100%;
 `;
 
 const CoverImage = styled.img`
-  max-width: 36px;
-  max-height: 36px;
+  width: 65px;
+  height: 65px;
+  max-width: 65px;
+  max-height: 65px;
+  @media (max-width: 480px) {
+    width: 45px;
+    height: 45px;
+    max-width: 45px;
+    max-height: 45px;
+  }
 `;
 
 const ExtraActions = styled.div`
@@ -39,17 +48,17 @@ const ExtraActions = styled.div`
 const SongPlaying = styled.div`
   color: white;
   display: grid;
+  grid-gap: 5px;
+  align-items: center;
+  justify-items: center;
+  /* align-items: center; */
   /* grid-auto-flow: column;   */
   grid-template-columns: 1fr 2fr;
-  align-items: center;
-  grid-gap: 10px;
-`;
-const PlayingArtist = styled.div`
-  font-size: 9px;
 `;
 
-const PlayingSong = styled.div`
-  font-size: 8px;
+const PlayingData = styled.div`
+  display: grid;
+  grid-gap: 5px;
 `;
 // const icon = {
 //   width: '11px',
@@ -63,7 +72,8 @@ const MusicPlayer = (props) => {
   let
     artist,
     name,
-    imageUrl = '';
+    imageUrl = '',
+    alt='';
 
   if (props.playing.songNumber) {
     const { playing } = props;
@@ -74,10 +84,8 @@ const MusicPlayer = (props) => {
     console.log('song', song);
     name = song.name;
     artist = song.artist;
-    const hello = 'world';
+    alt = song.album;
     // song = playing.playlist[playing.songNumber];
-    // name = song.name;
-    // name = song.name;
   }
   // const song = playing.playlist[playing.songNumber];
   // const { preview, name, album, images, artist } = song;
@@ -86,12 +94,11 @@ const MusicPlayer = (props) => {
       <nav>
         <AudioPlayer>
           <SongPlaying>
-            <CoverImage src={imageUrl} alt="" srcSet="" />
-            <div className="PlayingInfo">
-              <PlayingArtist>{artist}</PlayingArtist>
-              <PlayingSong>{name}</PlayingSong>
-              {/* <div>{hello}</div> */}
-            </div>
+            <CoverImage src={imageUrl} alt={alt} srcSet="" />
+            <PlayingData>
+              <AnimatedEllipsisText text={name} textWeight="bold" />
+              <AnimatedEllipsisText text={artist} textSize="9px" textResponsiveSize="8px" />
+            </PlayingData>
           </SongPlaying>
           <Player />
           {/* <ExtraActions>
