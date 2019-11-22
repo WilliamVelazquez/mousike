@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import repeat from '../../assets/static/repeat.png';
 import queue from '../../assets/static/Queue.png';
 import fullScreen from '../../assets/static/fullscreen.png';
@@ -73,7 +74,7 @@ const MusicPlayer = (props) => {
     artist,
     name,
     imageUrl = '',
-    alt='';
+    alt = '';
 
   if (props.playing.songNumber) {
     const { playing } = props;
@@ -93,13 +94,15 @@ const MusicPlayer = (props) => {
     <>
       <nav>
         <AudioPlayer>
-          <SongPlaying>
-            <CoverImage src={imageUrl} alt={alt} srcSet="" />
-            <PlayingData>
-              <AnimatedEllipsisText text={name} textWeight="bold" />
-              <AnimatedEllipsisText text={artist} textSize="9px" textResponsiveSize="8px" />
-            </PlayingData>
-          </SongPlaying>
+          <Link to="/fullPlayer">
+            <SongPlaying>
+              <CoverImage src={imageUrl} alt={alt} srcSet="" />
+              <PlayingData>
+                <AnimatedEllipsisText text={name} textWeight="bold" />
+                <AnimatedEllipsisText text={artist} textSize="9px" textResponsiveSize="8px" />
+              </PlayingData>
+            </SongPlaying>
+          </Link>
           <Player />
           {/* <ExtraActions>
             <div className="prev-song">

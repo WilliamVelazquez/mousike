@@ -213,14 +213,16 @@ class Player extends React.Component {
 
     if (this.state.isPlaying) {
       const { player } = this.refs;
-      this.setState({
-        progress: player.currentTime / player.duration,
-      });
-      const humanTime = formatTime(player.currentTime);
-      this.setState({ humanTime });
-      if (player.ended) {
-        console.log('song ended');
-        this.nextSong(this.state.playing.songNumber);
+      if (this.refs && player && player.currentTime) {
+        this.setState({
+          progress: player.currentTime ? player.currentTime / player.duration : null,
+        });
+        const humanTime = formatTime(player.currentTime);
+        this.setState({ humanTime });
+        if (player.ended) {
+          console.log('song ended');
+          this.nextSong(this.state.playing.songNumber);
+        }
       }
     }
 
