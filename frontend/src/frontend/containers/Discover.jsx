@@ -45,10 +45,10 @@ const Discover = (props) => {
       <div className="tabs">
         {/* <TabsHeader /> */}
         <GlobalStyle />
-        <MobileHeader title="DISCOVER" />
+        <MobileHeader title="MOUSIKE" />
         <PlaylistWrapper>
-          <BigHeader>Descubre</BigHeader>
-          <p>Artistas</p>
+          <BigHeader>Discover</BigHeader>
+          <p>Artists</p>
           {
             Object.entries(artists).map(
               (artist, i) => {
