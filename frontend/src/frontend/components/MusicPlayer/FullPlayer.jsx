@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -82,6 +82,80 @@ const Info = styled.div`
 `;
 
 const FullPlayer = (props) => {
+
+  const [state, setState] = useState({
+    playing: props.playing,
+    isPlaying: false,
+    trends: props.trends,
+  });
+
+  const pause = (cb) => {
+    console.log('pause');
+    console.log('pausing');
+    if (state.isPlaying) {
+      const player = document.getElementById('player');
+      player.pause();
+      setState({
+        isPlaying: false,
+      }, () => {
+        cb && cb();
+      });
+      //   },
+      // );
+    }
+  };
+  const play = () => {
+    console.log('playing');
+    const player = document.getElementById('player');
+    console.log(state);
+    const { isPlaying, playing, trends } = state;
+    // const playlist =
+    const song = playing.playlist.songNumber ? playing.playlist[playing.songNumber] : trends[0];
+    const { url } = song.images[0];
+
+    if (url) {
+      if (isPlaying) {
+        pause();
+        setTimeout(() => {
+          player.play().then((response) => {
+            setState({
+              isPlaying: true,
+            });
+          })
+            .catch(
+              (err) => {
+                console.log(err);
+              },
+            );
+        }, 0);
+
+      } else {
+        player.play().then(
+          () => {
+            setState({
+              isPlaying: true,
+            });
+          },
+        );
+      }
+
+    } else {
+      // this.nextSong();
+    }
+  };
+
+  const togglePlay = (event) => {
+    event.preventDefault();
+    const player = document.getElementById('player');
+    if (player.paused) {
+      console.log('play');
+      play();
+    } else {
+      console.log('pause');
+      pause();
+    }
+  };
+
   const { playing } = props;
   let song;
   playing.songNumber ? song = playing.playlist[playing.songNumber] : song = props.song;
@@ -105,17 +179,17 @@ const FullPlayer = (props) => {
             <FrontArt className="art" alt="art" src={url} />
             <Player />
             <div className="meta">
-              <ControlsTop className="controls top">
+              {/* <ControlsTop className="controls top">
                 <ControlsButton href="/" className="rewind skip">
                   <i style={{ 'fontSize': '30px' }} className="fas fa-backward" />
                 </ControlsButton>
-                <ControlsButton href="/" className="play">
+                <ControlsButton href="/" className="play" onClick={togglePlay}>
                   <i style={{ 'fontSize': '40px', 'marginTop': '3px' }} className="fas fa-play" />
                 </ControlsButton>
                 <ControlsButton href="/" className="forward skip">
                   <i style={{ 'fontSize': '30px' }} className="fas fa-forward" />
                 </ControlsButton>
-              </ControlsTop>
+              </ControlsTop> */}
               <Info className="info">
                 <h1>{name}</h1>
                 <h2>{artist}</h2>
