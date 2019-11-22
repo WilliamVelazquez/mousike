@@ -56,7 +56,7 @@ class Player extends React.Component {
       file: encodeURI('https://archive.org/download/vs3s02e01/format=VBR+MP3&ignore=x.mp3'),
       isPlaying: false,
       playing,
-      progress: 0.03,
+      progress: 0.006,
       humanTime: '00:00',
       isMobile: true,
     };

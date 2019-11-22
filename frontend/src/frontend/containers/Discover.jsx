@@ -54,11 +54,12 @@ const Discover = (props) => {
               (artist, i) => {
                 const albumImage = artist[1][0].images[1].url;
                 const artistName = artist[1][0].artist;
-                console.log(albumImage);
-                console.log(artistName);
+                //Album Data
+                // console.log(albumImage);
+                // console.log(artistName);
                 if (i < 9) {
                   return (
-                    <Playlist src={albumImage} name={artistName} />
+                    <Playlist src={albumImage} name={artistName} key={i} />
                   );
                 }
               },

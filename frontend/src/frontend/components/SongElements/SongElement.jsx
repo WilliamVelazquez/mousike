@@ -16,15 +16,22 @@ const Song = styled.li`
   list-style: none;
   text-decoration: white;
   border-bottom: 1px solid #d8d8d8;
-  grid-template-columns: 1fr 40px;
+  grid-template-columns: ${props => (props.addButton ? '1fr 40px' : '1fr')};
   &:hover,
   &:active {
     background: #5d00f5;
   }
   & a:not([href^="http"]){
-    background:#666;
-    color:#333;
-    cursor:default;
+    color: #767676;
+    background: #3c3c3c;
+    cursor: not-allowed;
+    border-bottom: inherit;
+    /* color: #696969; */
+    /* background: #262930; */
+    /* background:#666;
+    color: #333;
+    cursor:default; */
+    /* border-bottom: 1px solid #d8d8d8; */
   }
 `;
 
@@ -36,7 +43,7 @@ const SongLink = styled.a`
   padding-left: 10px;
   text-decoration: none;
   grid-template-columns: 1fr 80px;
-
+  padding-right: ${props => (props.addButton ? '0px' : '40px')};
 `;
 
 const SongName = styled.div`
@@ -76,20 +83,21 @@ const SongElement = (props) => {
   };
   // console.log(props);
   return (
-    <Song>
+    <Song addButton={!!href}>
       {href ? (
-        <SongLink href={href} onClick={handlePlay}>
+        <SongLink href={href} onClick={handlePlay} addButton={!!href}>
           <SongName>{name}</SongName>
           <SongDuration>{duration}</SongDuration>
         </SongLink>
       ) : (
-        <SongLink>
+        <SongLink addButton={!!href}>
           <SongName>{name}</SongName>
           <SongDuration>{duration}</SongDuration>
         </SongLink>
       )}
-
-      <SongAddImage src={plusIcon} alt="" />
+      {href &&
+        <SongAddImage src={plusIcon} alt="" />
+      }
     </Song>
   );
 };
